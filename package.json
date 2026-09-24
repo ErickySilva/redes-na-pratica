@@ -2,6 +2,8 @@
   "name": "entre-o-enter",
   "version": "1.0.0",
   "private": true,
+  "author": "Ericky Silva",
+  "license": "MIT",
   "description": "Landing page interativa sobre a camada de aplicação: DNS, TCP, TLS, HTTP, FTP, SSH, SMTP, POP3 e IMAP, do Enter até a página aparecer.",
   "type": "module",
   "scripts": {
