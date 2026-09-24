@@ -1,6 +1,7 @@
 /** 05 HTTP: monta requisição e resposta de acordo com método, caminho e status. */
 import { $, $$, escapeHtml, reducedMotion, tablist, timerGroup } from "../core/dom.js";
-import { getDomain, onDomainChange, DEFAULT_PATH } from "../core/state.js";
+import { get, subscribe, DEFAULT_PATH } from "../core/state.js";
+import { normalizePath } from "../lib/url.js";
 import { METHODS, STATUSES, CLASS_COLOR, CLASS_TONE } from "../data/http.js";
 
 export function initHttp() {
@@ -22,7 +23,7 @@ export function initHttp() {
     const m = METHODS[method];
     const lines = [
       `<span class="k">${method} ${escapeHtml(path)} HTTP/1.1</span>`,
-      `Host: ${escapeHtml(getDomain())}`,
+      `Host: ${escapeHtml(get("domain"))}`,
       "User-Agent: Mozilla/5.0",
       "Accept: text/html",
     ];
@@ -42,7 +43,7 @@ export function initHttp() {
       "Server: nginx",
     ];
     if (s.cls === 3)
-      lines.push(`<span class="k">Location: https://${escapeHtml(getDomain())}/novo</span>`);
+      lines.push(`<span class="k">Location: https://${escapeHtml(get("domain"))}/novo</span>`);
     if (status === "401") lines.push('<span class="y">WWW-Authenticate: Bearer</span>');
     if (status === "503") lines.push('<span class="y">Retry-After: 120</span>');
     lines.push("Content-Type: text/html", '<span class="c">(linha em branco)</span>');
@@ -68,10 +69,8 @@ export function initHttp() {
   }
 
   function applyPath() {
-    let v = pathIn.value.trim() || "/";
-    if (v[0] !== "/") v = `/${v}`;
-    path = v;
-    pathIn.value = v;
+    path = normalizePath(pathIn.value);
+    pathIn.value = path;
     paintRequest();
   }
 
@@ -109,7 +108,7 @@ export function initHttp() {
     send();
   });
 
-  onDomainChange(() => {
+  subscribe("domain", () => {
     paintRequest();
     paintResponse();
   });

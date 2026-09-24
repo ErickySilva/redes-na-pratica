@@ -6,7 +6,7 @@
   border: 1px solid rgba(7, 21, 34, 0.25);
   border-radius: 6px;
   background: var(--ink-term);
-  box-shadow: 0 14px 40px rgba(11, 33, 52, 0.16);
+  box-shadow: 0 14px 40px color-mix(in srgb, var(--shadow) 16%, transparent);
 }
 .term .bar {
   display: flex;

@@ -1,11 +1,18 @@
-/** Hero: rede animada no fundo, tecla Enter e troca de domínio. */
-import { $, $$, escapeHtml, reducedMotion, hasIO } from "../core/dom.js";
-import { getDomain, setDomain, onDomainChange, DEFAULT_PATH } from "../core/state.js";
+/** Hero: rede animada no fundo, tecla Enter e troca de domínio com consulta DNS real. */
+import { $, escapeHtml, reducedMotion, hasIO } from "../core/dom.js";
+import { get, set, subscribe, DEFAULT_PATH } from "../core/state.js";
+import { resolveCurrentDomain } from "../core/lookup.js";
+import { normalizeDomain, isValidHostname } from "../lib/url.js";
+import { formatMs } from "../lib/text.js";
+
+const signalColor = () =>
+  getComputedStyle(document.documentElement).getPropertyValue("--sig").trim() || "#0b6fad";
 
 function initNetworkCanvas() {
   const cv = $("#net");
   if (!cv) return;
   const ctx = cv.getContext("2d");
+  let color = signalColor();
   let pts = [];
   let raf = 0;
   let live = true;
@@ -30,7 +37,7 @@ function initNetworkCanvas() {
 
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    ctx.strokeStyle = ctx.fillStyle = "#0E7FC4";
+    ctx.strokeStyle = ctx.fillStyle = color;
     ctx.lineWidth = 1;
     for (let i = 0; i < pts.length; i++) {
       const a = pts[i];
@@ -72,6 +79,11 @@ function initNetworkCanvas() {
     }, 180);
   });
 
+  window.addEventListener("themechange", () => {
+    color = signalColor();
+    if (reducedMotion) draw();
+  });
+
   // Pausa a animação quando o hero sai da tela.
   if (hasIO) {
     new IntersectionObserver(
@@ -95,7 +107,7 @@ function initEnterKey() {
   if (!key) return;
   let fired = false;
 
-  const fullUrl = () => `https://${getDomain()}${DEFAULT_PATH}`;
+  const fullUrl = () => `https://${get("domain")}${DEFAULT_PATH}`;
 
   function go() {
     if (fired) return;
@@ -121,46 +133,65 @@ function initEnterKey() {
   key.addEventListener("click", go);
   window.addEventListener("keydown", (e) => {
     const nearTop = window.scrollY < window.innerHeight * 0.6;
-    const typing = e.target.closest?.("input, textarea, button, select");
-    if (e.key === "Enter" && !fired && nearTop && !typing) go();
+    const busy = e.target.closest?.("input, textarea, button, select, dialog");
+    if (e.key === "Enter" && !fired && nearTop && !busy) go();
   });
 
-  onDomainChange(() => {
+  subscribe("domain", () => {
     if (typed.textContent) typed.textContent = fullUrl();
   });
 }
 
-function initDomainInput() {
-  const input = $("#domIn");
+function initDomainForm() {
   const form = $("#domForm");
-  if (!input || !form) return;
+  const input = $("#domIn");
+  const note = $("#domNote");
+  if (!form) return;
 
-  form.addEventListener("submit", (e) => {
+  const say = (html, tone = "") => {
+    note.innerHTML = html;
+    note.dataset.tone = tone;
+  };
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const value = input.value
-      .trim()
-      .replace(/^https?:\/\//i, "")
-      .replace(/[/?#].*$/, "");
-    if (!value) {
-      input.value = getDomain();
+    const domain = normalizeDomain(input.value);
+
+    if (!isValidHostname(domain)) {
+      input.setAttribute("aria-invalid", "true");
+      say("Esse endereço não parece um domínio. Tente algo como <b>www.ufpe.br</b>.", "error");
       return;
     }
-    input.value = value;
-    setDomain(value);
+
+    input.removeAttribute("aria-invalid");
+    input.value = domain;
+    set("domain", domain);
     input.classList.add("tossed");
     setTimeout(() => input.classList.remove("tossed"), 540);
-  });
 
-  // Todos os lugares da página que mostram o domínio.
-  onDomainChange((domain) => {
-    $$("[data-dom]").forEach((el) => (el.textContent = domain));
-    const bare = domain.replace(/^www\./, "");
-    $$("[data-dom2]").forEach((el) => (el.textContent = bare));
+    say(`resolvendo <b>${escapeHtml(domain)}</b> de verdade…`, "busy");
+    try {
+      const { result, ip } = await resolveCurrentDomain();
+      if (get("domain") !== domain) return;
+      if (ip) {
+        say(
+          `<b>${escapeHtml(domain)}</b> → <b>${escapeHtml(ip)}</b> em ${formatMs(result.ms)}, via ${escapeHtml(result.resolver)}`,
+          "ok",
+        );
+      } else {
+        say(
+          `${escapeHtml(result.rcode)}: esse nome não tem endereço IPv4. A viagem segue com um IP de exemplo.`,
+          "error",
+        );
+      }
+    } catch {
+      say("Sem acesso ao DNS agora (offline?). A viagem segue com um IP de exemplo.", "error");
+    }
   });
 }
 
 export function initHero() {
   initNetworkCanvas();
   initEnterKey();
-  initDomainInput();
+  initDomainForm();
 }

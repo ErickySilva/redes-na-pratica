@@ -9,8 +9,8 @@
       content="Uma travessia interativa pela camada de aplicação: DNS, TCP, TLS, HTTP, FTP, SSH, SMTP, POP3 e IMAP, do Enter até a página aparecer."
     />
     <meta name="author" content="Ericky Silva" />
-    <meta name="theme-color" content="#EAF3FB" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#eaf3fb" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- Open Graph / redes sociais -->
     <meta property="og:type" content="website" />
@@ -21,7 +21,17 @@
       property="og:description"
       content="O que acontece entre apertar Enter e a página aparecer? DNS, TCP, TLS, HTTP e o resto da camada de aplicação, explicados de forma interativa."
     />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="A tecla Enter e a pergunta: mas o que acontece entre o Enter e a página?"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.png" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
     <meta name="twitter:title" content="Entre o Enter e a página" />
     <meta
       name="twitter:description"
@@ -63,7 +73,18 @@
 
     <!-- Marca a página como "com JS" antes da pintura, para as revelações não piscarem. -->
     <script>
-      document.documentElement.classList.add("js");
+      // Roda antes da primeira pintura: liga as animações de revelação e aplica o tema
+      // salvo (ou o do sistema), evitando a piscada de tema errado.
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        var saved = null;
+        try {
+          saved = localStorage.getItem("theme");
+        } catch (e) {}
+        var dark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+        root.dataset.theme = saved || (dark ? "dark" : "light");
+      })();
     </script>
     <script type="module" src="/src/main.js"></script>
   </head>
@@ -82,6 +103,7 @@
       <!-- @include sections/04-tls.html -->
       <!-- @include sections/05-http.html -->
       <!-- @include sections/06-render.html -->
+      <!-- @include sections/06b-raio-x.html -->
       <!-- @include sections/07-camadas.html -->
       <!-- @include sections/08-terminal.html -->
       <!-- @include sections/09-email.html -->
@@ -89,5 +111,7 @@
     </main>
 
     <!-- @include layout/footer.html -->
+
+    <!-- @include components/shortcuts.html -->
   </body>
 </html>

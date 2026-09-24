@@ -34,7 +34,10 @@
 }
 .layerbtn[aria-expanded="true"] {
   color: var(--sig);
-  background: rgba(14, 127, 196, 0.07);
+  background: color-mix(in srgb, var(--sig) 7%, transparent);
+}
+.layerbtn[aria-expanded="true"] .sm {
+  color: var(--muted);
 }
 .layerbtn .sm {
   color: var(--faint);
@@ -91,7 +94,7 @@
   background: var(--void-2);
 }
 .portstrip button[aria-selected="true"] {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--sig);
 }
 .portout {

@@ -6,7 +6,7 @@
   border: 1px solid var(--hair);
   border-radius: 6px;
   background: var(--pane);
-  box-shadow: 0 10px 34px rgba(11, 33, 52, 0.08);
+  box-shadow: 0 10px 34px color-mix(in srgb, var(--shadow) 8%, transparent);
 }
 @media (max-width: 980px) {
   .browser {
@@ -25,7 +25,7 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #c5d8e8;
+  background: var(--hair);
 }
 .browser .chrome .addr {
   flex: 1;
@@ -49,7 +49,11 @@
 .blk {
   display: block;
   border-radius: 3px;
-  background: linear-gradient(90deg, rgba(20, 84, 138, 0.13), rgba(20, 84, 138, 0.05));
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--line) 13%, transparent),
+    color-mix(in srgb, var(--line) 5%, transparent)
+  );
   opacity: 0;
   transform: translateY(12px);
   transition:
@@ -62,7 +66,11 @@
   transform: none;
 }
 .blk.done {
-  background: linear-gradient(90deg, rgba(14, 127, 196, 0.3), rgba(14, 127, 196, 0.1));
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--sig) 30%, transparent),
+    color-mix(in srgb, var(--sig) 10%, transparent)
+  );
 }
 .blk.h {
   width: 72%;
@@ -83,7 +91,11 @@
 .blk.img {
   width: 100%;
   height: clamp(70px, 12vh, 110px);
-  background: linear-gradient(120deg, rgba(91, 69, 204, 0.22), rgba(14, 127, 196, 0.1));
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--wire) 22%, transparent),
+    color-mix(in srgb, var(--sig) 10%, transparent)
+  );
 }
 .blk.row {
   display: flex;
@@ -95,7 +107,11 @@
   flex: 1;
   height: clamp(52px, 8vh, 72px);
   border-radius: 3px;
-  background: linear-gradient(90deg, rgba(17, 128, 90, 0.2), rgba(17, 128, 90, 0.06));
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--safe) 20%, transparent),
+    color-mix(in srgb, var(--safe) 6%, transparent)
+  );
 }
 
 .counters {

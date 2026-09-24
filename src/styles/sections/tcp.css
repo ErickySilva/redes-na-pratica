@@ -38,7 +38,7 @@
   border: 1px solid var(--sig);
   border-radius: 3px;
   background: var(--pane);
-  box-shadow: 0 2px 10px rgba(11, 33, 52, 0.08);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--shadow) 8%, transparent);
   color: var(--sig);
   font-family: var(--mono);
   font-size: 12px;

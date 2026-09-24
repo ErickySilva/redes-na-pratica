@@ -27,13 +27,13 @@
     box-shadow var(--t-slow) var(--ease);
 }
 .tunnel.secure .pipe {
-  border-color: rgba(17, 128, 90, 0.45);
-  background: rgba(17, 128, 90, 0.06);
-  box-shadow: 0 0 34px rgba(17, 128, 90, 0.08) inset;
+  border-color: color-mix(in srgb, var(--safe) 45%, transparent);
+  background: color-mix(in srgb, var(--safe) 6%, transparent);
+  box-shadow: 0 0 34px color-mix(in srgb, var(--safe) 8%, transparent) inset;
 }
 .tunnel.broken .pipe {
-  border-color: rgba(195, 58, 45, 0.5);
-  background: rgba(195, 58, 45, 0.05);
+  border-color: color-mix(in srgb, var(--alarm) 50%, transparent);
+  background: color-mix(in srgb, var(--alarm) 5%, transparent);
 }
 .tunnel .payload {
   position: relative;
@@ -81,7 +81,7 @@
   padding: 18px 20px;
   border: 1px solid var(--hair);
   border-radius: 4px;
-  background: rgba(17, 128, 90, 0.05);
+  background: color-mix(in srgb, var(--safe) 5%, transparent);
   opacity: 0;
   transform: translateY(10px);
   transition:
@@ -120,7 +120,7 @@
   padding: 16px 18px;
   border: 1px solid var(--alarm);
   border-radius: 4px;
-  background: rgba(195, 58, 45, 0.06);
+  background: color-mix(in srgb, var(--alarm) 6%, transparent);
 }
 .warnbox.on {
   display: block;

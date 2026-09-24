@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Ferramentas: botões de tema e atalhos, diálogo de atalhos, teclas <kbd>
+   ========================================================================== */
+.tools {
+  position: fixed;
+  top: clamp(14px, 2.2vw, 28px);
+  right: clamp(14px, 2.2vw, 34px);
+  z-index: 61;
+  display: flex;
+  gap: 8px;
+}
+@media (max-width: 900px) {
+  .tools {
+    display: none; /* no celular, o botão de tema mora na barra superior */
+  }
+}
+
+.tool {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--hair);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--pane) 85%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+.tool:hover {
+  color: var(--sig);
+  border-color: var(--sig);
+  transform: translateY(-1px);
+}
+.tool svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+.tool .icon-sun,
+:root[data-theme="dark"] .tool .icon-moon {
+  display: none;
+}
+:root[data-theme="dark"] .tool .icon-sun {
+  display: block;
+}
+
+.topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topbar .tool {
+  width: 30px;
+  height: 30px;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.9em;
+  padding: 1px 6px;
+  border: 1px solid var(--hair);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--pane);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.85em;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+/* ---------- diálogo de atalhos ---------- */
+.shortcuts {
+  width: min(520px, calc(100vw - 32px));
+  padding: 0;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  background: var(--pane);
+  color: var(--text);
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--shadow) 30%, transparent);
+}
+.shortcuts::backdrop {
+  background: color-mix(in srgb, var(--shadow) 45%, transparent);
+  backdrop-filter: blur(3px);
+}
+.shortcuts[open] {
+  animation: pop var(--t) var(--ease-out);
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+.shortcuts-in {
+  padding: clamp(20px, 4vw, 30px);
+}
+.shortcuts-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.shortcuts h2 {
+  font-size: 26px;
+}
+.keys {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+.keys div {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 14px;
+}
+.keys dt {
+  display: flex;
+  gap: 4px;
+}
+.keys dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}

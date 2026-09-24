@@ -74,7 +74,7 @@
   z-index: 60;
   display: none;
   padding-top: env(safe-area-inset-top, 0px);
-  background: rgba(234, 243, 251, 0.88);
+  background: color-mix(in srgb, var(--void) 88%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--hair-soft);
 }

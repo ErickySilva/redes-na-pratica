@@ -1,76 +1,143 @@
-/** 08 Terminal: sessão SSH roteirizada, linha de comando simulada, FTP e Telnet x SSH. */
+/** 08 Terminal: sessão SSH roteirizada, linha de comando com DNS real, FTP e Telnet x SSH. */
 import { $, escapeHtml, reducedMotion, tablist, timerGroup, onceVisible } from "../core/dom.js";
-import { getDomain } from "../core/state.js";
-import { INTRO_SCRIPT, COMMANDS, HELP } from "../data/terminal.js";
+import { get } from "../core/state.js";
+import { lookup } from "../core/lookup.js";
+import { INTRO_SCRIPT, COMMANDS, COMMAND_NAMES, NETWORK_COMMANDS, HELP } from "../data/terminal.js";
+import { fakeCipher } from "../lib/cipher.js";
+import { parseLookupArgs, formatDig, firstAddress } from "../lib/dns.js";
+import { normalizeDomain, isValidHostname } from "../lib/url.js";
 
 function initShell() {
   const out = $("#termOut");
   const input = $("#cmdIn");
-  if (!out) return;
+  if (!out || !input) return;
+  const history = [];
+  let historyAt = 0;
   let introDone = false;
 
   function print(html) {
-    out.innerHTML += (out.innerHTML ? "\n" : "") + html;
+    out.insertAdjacentHTML("beforeend", (out.childNodes.length ? "\n" : "") + html);
     out.scrollTop = out.scrollHeight;
+  }
+
+  function finishIntro() {
+    if (introDone) return;
+    introDone = true;
+    out.innerHTML = INTRO_SCRIPT.map(([line]) => line).join("\n");
   }
 
   function playIntro() {
     if (reducedMotion) {
-      out.innerHTML = INTRO_SCRIPT.map(([line]) => line).join("\n");
-      introDone = true;
+      finishIntro();
       return;
     }
-    let acc = "";
     let i = 0;
     (function next() {
-      if (introDone || i >= INTRO_SCRIPT.length) {
+      if (introDone) return;
+      if (i >= INTRO_SCRIPT.length) {
         introDone = true;
         return;
       }
-      const [line, pause] = INTRO_SCRIPT[i];
-      acc += (i ? "\n" : "") + line;
-      out.innerHTML = acc;
-      i++;
-      setTimeout(next, pause);
+      print(INTRO_SCRIPT[i][0]);
+      setTimeout(next, INTRO_SCRIPT[i++][1]);
     })();
   }
 
-  function run(raw) {
-    // Se a pessoa digitar antes do roteiro acabar, interrompe o roteiro.
-    if (!introDone) {
-      introDone = true;
-      out.innerHTML = INTRO_SCRIPT.map(([line]) => line).join("\n");
-    }
-    out.innerHTML = out.innerHTML.replace(
-      /\n?<span class="p">\$<\/span> <span class="caret"><\/span>$/,
-      "",
-    );
+  const comment = (line) => `<span class="cm">${escapeHtml(line)}</span>`;
+  const answer = (line) => `<span class="ok">${escapeHtml(line)}</span>`;
 
+  async function dnsCommand(name, args) {
+    const { name: raw, type } = parseLookupArgs(args, get("domain"));
+    const domain = normalizeDomain(raw);
+    if (!isValidHostname(domain)) {
+      print(`<span class="er">${name}: '${escapeHtml(raw)}' não é um domínio válido.</span>`);
+      return;
+    }
+    print(comment(`;; consultando ${domain} (${type}) via DNS sobre HTTPS…`));
+    try {
+      const result = await lookup(domain, type);
+      if (name === "nslookup") {
+        print(`Server:  ${escapeHtml(result.resolver)}`);
+        if (!result.answers.length) {
+          print(`<span class="er">** ${escapeHtml(result.rcode)}: ${escapeHtml(domain)}</span>`);
+        }
+        for (const a of result.answers) {
+          const label = a.type === "A" || a.type === "AAAA" ? "Address" : a.type;
+          print(`${label}: ${answer(a.data)}`);
+        }
+      } else {
+        formatDig(result).forEach((line) =>
+          print(line.startsWith(";") ? comment(line) : answer(line)),
+        );
+      }
+      if (type === "A" && firstAddress(result)) {
+        print(comment(`# resposta real, medida agora: ${result.ms} ms`));
+      }
+    } catch {
+      print(`<span class="er">${name}: sem resposta dos resolvedores (offline?).</span>`);
+    }
+  }
+
+  async function run(raw) {
+    finishIntro();
     const cmd = raw.trim();
     print(`<span class="p">$</span> ${escapeHtml(cmd)}`);
     if (!cmd) return;
 
-    const [name, ...args] = cmd.split(/\s+/);
-    const key = name.toLowerCase();
-    if (key === "clear") {
+    history.push(cmd);
+    historyAt = history.length;
+
+    const [first, ...args] = cmd.split(/\s+/);
+    const name = first.toLowerCase();
+    if (name === "clear") {
       out.innerHTML = "";
       return;
     }
-    const handler = COMMANDS[key];
+    if (NETWORK_COMMANDS.includes(name)) {
+      await dnsCommand(name, args);
+      return;
+    }
+    const handler = COMMANDS[name];
     const lines = handler
-      ? handler(args, getDomain(), escapeHtml)
-      : [`<span class="er">comando não reconhecido.</span> ${HELP}`];
+      ? handler({ args, domain: get("domain"), ip: get("ip"), esc: escapeHtml })
+      : [`<span class="er">${escapeHtml(name)}: comando não encontrado.</span>`, ...HELP];
     lines.forEach(print);
   }
 
-  onceVisible(out, playIntro, 0.35);
+  function complete() {
+    const [partial, ...rest] = input.value.split(" ");
+    if (rest.length || !partial) return;
+    const matches = COMMAND_NAMES.filter((c) => c.startsWith(partial.toLowerCase()));
+    if (matches.length === 1) input.value = `${matches[0]} `;
+    else if (matches.length > 1) print(comment(matches.join("  ")));
+  }
 
-  input?.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-    e.preventDefault();
-    run(input.value);
-    input.value = "";
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const value = input.value;
+      input.value = "";
+      run(value);
+    } else if (e.key === "ArrowUp" && history.length) {
+      e.preventDefault();
+      historyAt = Math.max(0, historyAt - 1);
+      input.value = history[historyAt];
+    } else if (e.key === "ArrowDown" && history.length) {
+      e.preventDefault();
+      historyAt = Math.min(history.length, historyAt + 1);
+      input.value = history[historyAt] ?? "";
+    } else if (e.key === "Tab" && input.value.trim()) {
+      e.preventDefault();
+      complete();
+    }
   });
+
+  // Clicar em qualquer parte do terminal foca a linha de comando (sem atrapalhar a seleção).
+  $("#term")?.addEventListener("click", () => {
+    if (!window.getSelection()?.toString()) input.focus();
+  });
+
+  onceVisible(out, playIntro, 0.35);
 }
 
 const FTP_TEXT = {
@@ -127,18 +194,6 @@ function initFtp() {
   $("#ftpRun").addEventListener("click", play);
   say.textContent = FTP_TEXT.ativo;
   onceVisible(box, play, 0.4);
-}
-
-/** Hash FNV-1a + LCG: gera um "texto cifrado" estável para a mesma senha. */
-function fakeCipher(str) {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619) >>> 0;
-  let out = "";
-  for (let j = 0; j < Math.max(22, str.length * 2); j++) {
-    h = (Math.imul(h, 1664525) + 1013904223) >>> 0;
-    out += "0123456789abcdef"[h % 16];
-  }
-  return out;
 }
 
 function initWire() {

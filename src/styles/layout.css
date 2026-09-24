@@ -50,7 +50,7 @@
 /* domínios longos não têm onde quebrar; sem isso estouram a largura no celular */
 .stage h2 [data-dom],
 .scene h2 [data-dom] {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 .stage h2 .thin,
 .scene h2 .thin {

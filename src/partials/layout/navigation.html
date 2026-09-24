@@ -1,7 +1,10 @@
 <div class="topbar">
   <div class="row">
     <a class="tiny brand" href="#hero">ENTRE O ENTER E A PÁGINA</a>
-    <span class="now" id="nowLabel" aria-live="polite">00 INÍCIO</span>
+    <span class="topbar-end">
+      <span class="now" id="nowLabel" aria-live="polite">00 INÍCIO</span>
+      <!-- @include ../components/theme-toggle.html -->
+    </span>
   </div>
   <div class="prog" aria-hidden="true"><i id="progBar"></i></div>
 </div>
@@ -45,6 +48,12 @@
       </a>
     </li>
     <li>
+      <a href="#raio-x">
+        <span class="lbl">RAIO-X</span>
+        <span class="tick"></span>
+      </a>
+    </li>
+    <li>
       <a href="#camadas">
         <span class="lbl">CAMADAS</span>
         <span class="tick"></span>
@@ -70,3 +79,10 @@
     </li>
   </ol>
 </nav>
+
+<div class="tools" role="toolbar" aria-label="Preferências">
+  <!-- @include ../components/theme-toggle.html -->
+  <button class="tool" type="button" data-open-shortcuts aria-label="Atalhos de teclado">
+    <span aria-hidden="true">?</span>
+  </button>
+</div>

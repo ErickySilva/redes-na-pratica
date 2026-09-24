@@ -1,6 +1,7 @@
 /* ==========================================================================
    Design tokens
    Cores, tipografia, movimento e espaçamento usados em todo o projeto.
+   Todas as cores de texto passam no contraste WCAG AA (4,5:1) nos dois temas.
    ========================================================================== */
 :root {
   /* superfícies */
@@ -8,23 +9,33 @@
   --void-2: #f5fafe;
   --pane: #ffffff;
   --pane-2: #e3eef8;
-  --hair: rgba(20, 84, 138, 0.2);
-  --hair-soft: rgba(20, 84, 138, 0.1);
+  --line: #14548a; /* base das linhas e divisórias */
+  --shadow: #0b2134;
+  --hair: color-mix(in srgb, var(--line) 20%, transparent);
+  --hair-soft: color-mix(in srgb, var(--line) 10%, transparent);
 
   /* texto */
   --text: #0b2134;
+  --text-code: #1b3b56;
   --muted: #42627e;
-  --faint: #6a88a4;
+  --faint: #4f6d8a;
 
   /* sinal e estados */
-  --sig: #0e7fc4;
+  --sig: #0b6fad;
   --sig-dim: #9ccbe8;
-  --sig-glow: rgba(14, 127, 196, 0.22);
-  --safe: #11805a;
-  --warn: #a96a06;
+  --sig-glow: color-mix(in srgb, var(--sig) 22%, transparent);
+  --on-accent: #ffffff;
+  --safe: #0e7552;
+  --warn: #94600a;
   --alarm: #c33a2d;
   --wire: #5b45cc;
   --ink-term: #071522;
+
+  /* tecla do hero */
+  --key-top: #ffffff;
+  --key-bottom: #dce9f5;
+  --key-edge: #bbd2e6;
+  --key-shine: #ffffff;
 
   /* tipografia */
   --disp: "Anybody", "Arial Narrow", system-ui, sans-serif;
@@ -46,4 +57,36 @@
   --gap-section: clamp(50px, 9vh, 100px);
 
   color-scheme: light;
+}
+
+/* O script no <head> resolve a preferência (salva ou do sistema) em data-theme
+   antes da primeira pintura, então não há piscada de tema errado. */
+:root[data-theme="dark"] {
+  --void: #07131f;
+  --void-2: #0a1928;
+  --pane: #0d1f30;
+  --pane-2: #12283d;
+  --line: #8cc4f0;
+  --shadow: #000000;
+
+  --text: #e4eef8;
+  --text-code: #c9dcee;
+  --muted: #9fb7cd;
+  --faint: #7c97b0;
+
+  --sig: #4cb1f5;
+  --sig-dim: #1f5a85;
+  --on-accent: #06121d;
+  --safe: #3ccf95;
+  --warn: #e8ab45;
+  --alarm: #ff8577;
+  --wire: #a497ff;
+  --ink-term: #040c14;
+
+  --key-top: #1a3350;
+  --key-bottom: #0f2236;
+  --key-edge: #06121d;
+  --key-shine: #3a5c80;
+
+  color-scheme: dark;
 }

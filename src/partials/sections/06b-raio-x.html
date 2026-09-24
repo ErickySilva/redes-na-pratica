@@ -1,0 +1,88 @@
+<section
+  class="stage stage--flush-top"
+  id="raio-x"
+  data-stage="06+"
+  data-name="RAIO-X"
+  aria-labelledby="xray-title"
+>
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">06+</span>
+      <span class="rule"></span>
+      <span class="of">medido agora, no seu navegador</span>
+    </div>
+    <div class="stage-intro">
+      <h2 class="rv d1" id="xray-title">
+        E esta página?
+        <span class="thin">Aqui vai o raio-x dela.</span>
+      </h2>
+      <p class="lead rv d2">
+        Os números acima são de uma página típica. Os de baixo são reais: o navegador anota o tempo
+        de cada fase de cada requisição, e esta seção lê essas anotações pela
+        <b>Performance API</b>, a mesma fonte da aba Network do DevTools.
+      </p>
+    </div>
+
+    <dl class="xray-sum block rv">
+      <div>
+        <dt>REQUISIÇÕES</dt>
+        <dd id="xrReq">–</dd>
+      </div>
+      <div>
+        <dt>MÁQUINAS</dt>
+        <dd id="xrHosts">–</dd>
+      </div>
+      <div>
+        <dt>TRANSFERIDO</dt>
+        <dd id="xrBytes">–</dd>
+      </div>
+      <div>
+        <dt>ATÉ O EVENTO LOAD</dt>
+        <dd id="xrTotal">–</dd>
+      </div>
+      <div class="xray-sum-proto">
+        <dt>PROTOCOLO</dt>
+        <dd id="xrProto">–</dd>
+      </div>
+    </dl>
+
+    <div class="panel xray rv" id="xray">
+      <ul class="xray-legend" aria-label="Legenda">
+        <li><span class="xk xk--dns"></span>DNS</li>
+        <li><span class="xk xk--tcp"></span>TCP</li>
+        <li><span class="xk xk--tls"></span>TLS</li>
+        <li><span class="xk xk--ttfb"></span>espera</li>
+        <li><span class="xk xk--download"></span>download</li>
+        <li class="sep" aria-hidden="true"></li>
+        <li><span class="xk xk--css"></span>estilo</li>
+        <li><span class="xk xk--js"></span>script</li>
+        <li><span class="xk xk--font"></span>fonte</li>
+        <li><span class="xk xk--data"></span>consulta</li>
+      </ul>
+      <ol
+        class="xray-rows"
+        id="xrayRows"
+        aria-label="Requisições desta página, em ordem de início"
+      ></ol>
+      <div class="xray-axis" id="xrayAxis" aria-hidden="true"></div>
+      <div class="xray-late" id="xrayLate" hidden>
+        <p class="tiny">DEPOIS DO CARREGAMENTO, ENQUANTO VOCÊ NAVEGAVA</p>
+        <ol
+          class="xray-rows"
+          id="xrayLateRows"
+          aria-label="Requisições feitas depois do carregamento"
+        ></ol>
+      </div>
+      <div class="xray-detail" id="xrayDetail" aria-live="polite">medindo…</div>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn" type="button" id="xrayReload">RECARREGAR E MEDIR DE NOVO</button>
+    </div>
+    <p class="lead lead--note rv">
+      Esta página é pequena de propósito, com poucas requisições. Um portal de notícias passa de
+      duzentas, espalhadas por dezenas de máquinas diferentes, e cada uma delas repete a viagem
+      inteira que você acabou de ver.
+    </p>
+  </div>
+</section>
