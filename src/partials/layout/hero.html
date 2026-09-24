@@ -1,0 +1,37 @@
+<header class="hero" id="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <p class="you">VOCÊ APERTA</p>
+    <button class="keycap" id="enterKey" type="button" aria-describedby="enterHelp">
+      <span class="keycap-label">ENTER<span class="arrow" aria-hidden="true">↵</span></span>
+    </button>
+    <h1>
+      Mas o que acontece
+      <span class="l2">entre o Enter e a página?</span>
+    </h1>
+    <div class="addrbar" aria-hidden="true">
+      <svg class="lk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <rect x="4" y="10" width="16" height="11" rx="2" />
+        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+      </svg>
+      <span class="txt" id="typedUrl"></span>
+    </div>
+    <form class="domrow" id="domForm">
+      <label class="tiny" for="domIn">OU USE OUTRO ENDEREÇO</label>
+      <input
+        class="field"
+        id="domIn"
+        value="www.exemplo.com"
+        autocomplete="off"
+        spellcheck="false"
+        inputmode="url"
+      />
+      <button class="btn" type="submit">APLICAR</button>
+    </form>
+    <p class="hint" id="enterHelp">pressione a tecla para começar a viagem</p>
+  </div>
+  <div class="scrollcue" aria-hidden="true">
+    <span class="tiny">ROLE</span>
+    <i></i>
+  </div>
+</header>

@@ -1,0 +1,146 @@
+<section
+  class="stage"
+  id="camadas"
+  data-stage="07"
+  data-name="CAMADAS"
+  aria-labelledby="camadas-title"
+>
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">07</span>
+      <span class="rule"></span>
+      <span class="of">onde tudo isso mora</span>
+    </div>
+    <div class="stage-intro">
+      <h2 class="rv d1" id="camadas-title">
+        Tudo que você viu até aqui
+        <span class="thin">aconteceu em quatro andares.</span>
+      </h2>
+      <p class="lead rv d2">
+        DNS, TLS e HTTP conversam no andar de cima. Quando o dado chega lá, ele já cruzou o mundo,
+        já foi conferido e já está no programa certo. O trabalho da camada de aplicação é outro: dar
+        significado aos bytes e definir as regras da conversa.
+      </p>
+    </div>
+
+    <div class="editorial block rv d3">
+      <div class="layers" id="layers">
+        <button class="layerbtn" type="button" aria-expanded="true" aria-controls="L1">
+          Aplicação
+          <span class="sm">HTTP, DNS, SMTP, SSH</span>
+        </button>
+        <div class="layerbody" id="L1">
+          Define o que está sendo trocado e com que regras. Um pedido de página, uma mensagem de
+          correio, um comando de terminal.
+          <em>Nos Correios: o que está escrito dentro da carta.</em>
+        </div>
+        <button class="layerbtn" type="button" aria-expanded="false" aria-controls="L2">
+          Transporte
+          <span class="sm">TCP, UDP</span>
+        </button>
+        <div class="layerbody" id="L2" hidden>
+          O IP entrega na máquina; o transporte entrega no processo, pelo número da porta. O TCP
+          ainda garante que chegou tudo, na ordem, sem faltar nada.
+          <em>Nos Correios: entregar à pessoa certa dentro da casa.</em>
+        </div>
+        <button class="layerbtn" type="button" aria-expanded="false" aria-controls="L3">
+          Internet
+          <span class="sm">IP</span>
+        </button>
+        <div class="layerbody" id="L3" hidden>
+          Atravessa redes diferentes, saltando de roteador em roteador, até chegar à máquina de
+          destino.
+          <em>Nos Correios: o endereço e a rota entre cidades.</em>
+        </div>
+        <button class="layerbtn" type="button" aria-expanded="false" aria-controls="L4">
+          Acesso à rede
+          <span class="sm">cabo, Wi-Fi, fibra</span>
+        </button>
+        <div class="layerbody" id="L4" hidden>
+          Transforma os dados em sinal elétrico, luz ou rádio e entrega ao vizinho imediato.
+          <em>Nos Correios: o caminhão e a estrada.</em>
+        </div>
+      </div>
+      <div class="notecol">
+        <div class="n">
+          <h3>PROTOCOLO É UM CONTRATO</h3>
+          <p>
+            Ele combina três coisas: o formato da mensagem, o significado de cada campo e quem fala
+            quando. Um servidor web e um cliente de e-mail conectados não se entendem, e não é por
+            falta de conexão: é por falta de contrato em comum.
+          </p>
+        </div>
+        <div class="n warn">
+          <h3>OSI E TCP/IP NÃO SE ENCAIXAM UM A UM</h3>
+          <p>
+            A aplicação do TCP/IP cobre, em linhas gerais, as camadas 5, 6 e 7 do OSI. Mas é
+            aproximação, não equivalência: o HTTP não tem camada de sessão nem de apresentação
+            separadas, ele resolve estado e formato dentro de si mesmo, com cabeçalhos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="tiny port-caption rv">O IP LEVA ATÉ A MÁQUINA. A PORTA LEVA ATÉ O PROGRAMA.</p>
+    <div class="portstrip rv" id="portStrip" role="tablist" aria-label="Portas conhecidas">
+      <button
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="portOut"
+        data-d="Terminal remoto seguro, e também o caminho do SFTP, que é construído em cima do SSH."
+      >
+        22 ssh
+      </button>
+      <button
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="portOut"
+        data-d="As consultas de nome que você viu na parada 02, normalmente sobre UDP."
+      >
+        53 dns
+      </button>
+      <button
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="portOut"
+        data-d="Páginas web sem criptografia. Hoje quase todo site nessa porta redireciona o visitante para a 443."
+      >
+        80 http
+      </button>
+      <button
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="portOut"
+        data-d="O mesmo HTTP, dentro do túnel TLS. É onde acontece quase todo o tráfego da web."
+      >
+        443 https
+      </button>
+      <button
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="portOut"
+        data-d="Canal de controle do FTP, por onde passam apenas os comandos. Os arquivos viajam por uma segunda conexão."
+      >
+        21 ftp
+      </button>
+      <button
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="portOut"
+        data-d="Submissão de e-mail: é por ela que o seu aplicativo entrega a mensagem ao servidor, com TLS."
+      >
+        587 smtp
+      </button>
+    </div>
+    <p class="portout" id="portOut" role="tabpanel" aria-live="polite">
+      <b>Porta 22, SSH.</b>
+      Terminal remoto seguro, e também o caminho do SFTP, que é construído em cima do SSH.
+    </p>
+  </div>
+</section>

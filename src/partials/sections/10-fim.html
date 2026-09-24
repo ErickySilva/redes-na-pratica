@@ -1,0 +1,162 @@
+<section class="finale" id="fim" data-stage="10" data-name="FIM" aria-labelledby="fim-title">
+  <div class="shell">
+    <div class="stage-mark">
+      <span class="no">10</span>
+      <span class="rule"></span>
+      <span class="of">de volta ao começo</span>
+    </div>
+    <ol class="checks" id="checks" aria-label="Resumo da viagem">
+      <li class="chk">
+        <span class="tickmark" aria-hidden="true">✓</span>
+        <span class="nm">DNS</span>
+        <span class="ds">o nome virou 93.184.216.34</span>
+      </li>
+      <li class="chk">
+        <span class="tickmark" aria-hidden="true">✓</span>
+        <span class="nm">TCP</span>
+        <span class="ds">conexão aberta na porta 443</span>
+      </li>
+      <li class="chk">
+        <span class="tickmark" aria-hidden="true">✓</span>
+        <span class="nm">TLS</span>
+        <span class="ds">certificado conferido, túnel pronto</span>
+      </li>
+      <li class="chk">
+        <span class="tickmark" aria-hidden="true">✓</span>
+        <span class="nm">HTTP</span>
+        <span class="ds">GET enviado por dentro do túnel</span>
+      </li>
+      <li class="chk">
+        <span class="tickmark" aria-hidden="true">✓</span>
+        <span class="nm">SERVIDOR</span>
+        <span class="ds">200 OK com o HTML</span>
+      </li>
+      <li class="chk">
+        <span class="tickmark" aria-hidden="true">✓</span>
+        <span class="nm">NAVEGADOR</span>
+        <span class="ds">dezenas de pedidos e a página montada</span>
+      </li>
+    </ol>
+    <div class="closing">
+      <h2 id="fim-title">Cerca de 0,3 segundo.</h2>
+      <p>
+        Cinco máquinas consultadas, dezenas de requisições, um certificado conferido e um túnel
+        montado. Da próxima vez que você apertar Enter, vai saber o que está acontecendo enquanto a
+        tela ainda parece parada.
+      </p>
+    </div>
+
+    <div class="block--section">
+      <p class="tiny">TESTE O QUE FICOU</p>
+      <p class="score" aria-live="polite">
+        <b id="scoreN">0</b>
+        <span id="scoreT">de 5 respondidas</span>
+      </p>
+      <div class="qz" id="quiz"></div>
+      <div class="quiz-actions">
+        <button class="btn ghost" type="button" id="quizReset" hidden>REFAZER O TESTE</button>
+      </div>
+    </div>
+
+    <div class="block--section">
+      <p class="tiny eyebrow" id="ref-caption">PORTAS, TRANSPORTE E O QUE VIAJA ABERTO</p>
+      <div class="scrollx">
+        <table class="tbl" aria-labelledby="ref-caption">
+          <thead>
+            <tr>
+              <th scope="col">protocolo</th>
+              <th scope="col">porta</th>
+              <th scope="col">transporte</th>
+              <th scope="col">função</th>
+              <th scope="col">protegido</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DNS</td>
+              <td>53</td>
+              <td>UDP e TCP</td>
+              <td>nome para endereço IP</td>
+              <td class="no">não</td>
+            </tr>
+            <tr>
+              <td>HTTP</td>
+              <td>80</td>
+              <td>TCP</td>
+              <td>recursos da web</td>
+              <td class="no">não</td>
+            </tr>
+            <tr>
+              <td>HTTPS</td>
+              <td>443</td>
+              <td>TCP, UDP no HTTP/3</td>
+              <td>HTTP dentro de TLS</td>
+              <td class="yes">sim</td>
+            </tr>
+            <tr>
+              <td>FTP</td>
+              <td>21, mais 20 no ativo</td>
+              <td>TCP</td>
+              <td>transferência de arquivos</td>
+              <td class="no">não</td>
+            </tr>
+            <tr>
+              <td>FTPS</td>
+              <td>21 ou 990</td>
+              <td>TCP</td>
+              <td>FTP dentro de TLS</td>
+              <td class="yes">sim</td>
+            </tr>
+            <tr>
+              <td>SFTP</td>
+              <td>22</td>
+              <td>TCP</td>
+              <td>transferência sobre SSH</td>
+              <td class="yes">sim</td>
+            </tr>
+            <tr>
+              <td>Telnet</td>
+              <td>23</td>
+              <td>TCP</td>
+              <td>terminal remoto</td>
+              <td class="no">não</td>
+            </tr>
+            <tr>
+              <td>SSH</td>
+              <td>22</td>
+              <td>TCP</td>
+              <td>sessão remota segura</td>
+              <td class="yes">sim</td>
+            </tr>
+            <tr>
+              <td>SMTP</td>
+              <td>25, 587, 465</td>
+              <td>TCP</td>
+              <td>envio e entrega</td>
+              <td class="part">com TLS</td>
+            </tr>
+            <tr>
+              <td>POP3</td>
+              <td>110 e 995</td>
+              <td>TCP</td>
+              <td>baixar mensagens</td>
+              <td class="part">na 995</td>
+            </tr>
+            <tr>
+              <td>IMAP</td>
+              <td>143 e 993</td>
+              <td>TCP</td>
+              <td>sincronizar mensagens</td>
+              <td class="part">na 993</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead lead--note">
+        Leia a última coluna de cima a baixo. Quase tudo nasceu aberto, numa rede pequena entre
+        instituições que confiavam umas nas outras. As versões protegidas vieram depois, como
+        remendo ou como substituição.
+      </p>
+    </div>
+  </div>
+</section>

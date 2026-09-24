@@ -1,0 +1,98 @@
+<section class="stage" id="tls" data-stage="04" data-name="TLS" aria-labelledby="tls-title">
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">04</span>
+      <span class="rule"></span>
+      <span class="of">fechar o canal</span>
+    </div>
+    <div class="stage-intro">
+      <h2 class="rv d1" id="tls-title">
+        O cano está aberto.
+        <span class="thin">Qualquer um no caminho consegue olhar dentro.</span>
+      </h2>
+      <p class="lead rv d2">
+        O TLS não substitui o HTTP: ele embrulha a conversa inteira antes que ela comece. Ligue o
+        interruptor e veja o que muda para quem está no meio do caminho.
+      </p>
+    </div>
+
+    <div class="scene-grid scene-grid--top block">
+      <div class="panel tunnel rv d3" id="tunnel">
+        <div class="shellwrap">
+          <span class="pipe" aria-hidden="true"></span>
+          <span class="payload" id="payload" aria-live="polite">senha=123456</span>
+        </div>
+        <div class="switchrow">
+          <label class="swt">
+            <input type="checkbox" id="tlsSwitch" />
+            <span class="track"></span>
+            <span id="tlsLabel">TLS DESLIGADO</span>
+          </label>
+          <span class="tiny" id="portLabel">PORTA 80</span>
+        </div>
+        <div class="eye">
+          <span class="who">NO CAMINHO</span>
+          <span class="says" id="eyeSays"></span>
+        </div>
+      </div>
+      <div class="rv d3">
+        <div class="cert" id="cert">
+          <p class="hd">CERTIFICADO APRESENTADO</p>
+          <dl style="display: grid; gap: 6px; margin: 0">
+            <div class="row">
+              <dt>emitido para</dt>
+              <dd data-dom>www.exemplo.com</dd>
+            </div>
+            <div class="row">
+              <dt>emitido por</dt>
+              <dd>autoridade certificadora</dd>
+            </div>
+            <div class="row">
+              <dt>válido até</dt>
+              <dd>14/03/2027</dd>
+            </div>
+            <div class="row">
+              <dt>verificado pelo navegador</dt>
+              <dd class="is-safe">sim</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="warnbox" id="certWarn" role="alert">
+          <h3>A sua conexão não é particular</h3>
+          <p>
+            O certificado apresentado não corresponde a este endereço, está vencido ou foi emitido
+            por quem o navegador não conhece. O túnel até pode ser montado, mas ninguém garante quem
+            está do outro lado.
+          </p>
+        </div>
+        <div class="btnrow btnrow--tight">
+          <button class="btn ghost" type="button" id="certBreak">
+            APRESENTAR UM CERTIFICADO INVÁLIDO
+          </button>
+        </div>
+        <div class="notecol notecol--spaced">
+          <div class="n">
+            <h3>CONFIDENCIALIDADE</h3>
+            <p>Ninguém no caminho lê o conteúdo.</p>
+          </div>
+          <div class="n">
+            <h3>INTEGRIDADE</h3>
+            <p>Se um bit for alterado no meio do caminho, a outra ponta detecta e descarta.</p>
+          </div>
+          <div class="n">
+            <h3>AUTENTICIDADE</h3>
+            <p>
+              O certificado prova que o servidor é quem diz ser. O aviso de conexão não particular é
+              essa checagem falhando.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="lead lead--note rv" style="margin-top: 34px">
+      A ordem importa: o TCP conecta, o TLS negocia e confere o certificado, e só então o HTTP
+      começa a falar lá dentro.
+      <b>HTTPS não é outro protocolo</b>, é o mesmo HTTP dentro do túnel.
+    </p>
+  </div>
+</section>

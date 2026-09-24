@@ -1,0 +1,162 @@
+<section
+  class="scene scene--dns"
+  id="dns"
+  data-stage="02"
+  data-name="DNS"
+  aria-labelledby="dns-title"
+>
+  <div class="scene-pin">
+    <div class="shell">
+      <div class="scene-grid">
+        <div>
+          <div class="stage-mark">
+            <span class="no">02</span>
+            <span class="rule"></span>
+            <span class="of">o endereço de verdade</span>
+          </div>
+          <h2 id="dns-title">
+            <span data-dom>www.exemplo.com</span>
+            <span class="thin">não significa nada para a rede.</span>
+          </h2>
+          <p class="lead stage-lead">
+            Roteador nenhum consegue encaminhar um pacote para um nome. A infraestrutura só entende
+            número. Ninguém guarda a lista inteira: a responsabilidade é fatiada em níveis, e cada
+            nível sabe apenas a quem indicar.
+          </p>
+          <p class="ipout" id="ipOut">93.184.216.34</p>
+          <p class="ipmeta" id="ipMeta" aria-live="polite"></p>
+          <div class="btnrow">
+            <button class="btn" type="button" id="dnsAgain">CONSULTAR DE NOVO</button>
+            <button class="btn ghost" type="button" id="dnsFlush">LIMPAR O CACHE</button>
+            <button class="btn ghost" type="button" id="dnsStep">AVANÇAR UM SALTO</button>
+          </div>
+        </div>
+        <div class="chain">
+          <span class="track" aria-hidden="true"></span>
+          <span class="beam" id="beam" aria-hidden="true"></span>
+          <ol class="chain-list">
+            <li class="knode" data-k="0">
+              <span class="dot">01</span>
+              <div>
+                <div class="nm">Seu computador</div>
+                <div class="sub">
+                  Pergunta uma vez só ao resolvedor e espera a resposta pronta. Isso é a consulta
+                  recursiva.
+                </div>
+              </div>
+            </li>
+            <li class="knode" data-k="1">
+              <span class="dot">02</span>
+              <div>
+                <div class="nm">Resolvedor</div>
+                <div class="sub">
+                  Normalmente o do provedor, ou 1.1.1.1. É ele que faz todo o trabalho a partir
+                  daqui.
+                </div>
+              </div>
+            </li>
+            <li class="knode" data-k="2" data-cache="1">
+              <span class="dot">03</span>
+              <div>
+                <div class="nm">Servidores raiz</div>
+                <div class="sub">"Não sei o endereço, mas sei quem cuida do .com."</div>
+              </div>
+            </li>
+            <li class="knode" data-k="3" data-cache="1">
+              <span class="dot">04</span>
+              <div>
+                <div class="nm">Servidores do .com</div>
+                <div class="sub">
+                  "Também não sei. O dono desse domínio é o ns1.<span data-dom2>exemplo.com</span>."
+                </div>
+              </div>
+            </li>
+            <li class="knode" data-k="4" data-cache="1">
+              <span class="dot">05</span>
+              <div>
+                <div class="nm">Servidor autoritativo</div>
+                <div class="sub">"Esse domínio é meu. O endereço é 93.184.216.34."</div>
+              </div>
+            </li>
+            <li class="knode" data-k="5">
+              <span class="dot">06</span>
+              <div>
+                <div class="nm">Resposta e cache</div>
+                <div class="sub">
+                  O resolvedor devolve o endereço e guarda uma cópia pelo tempo do TTL, em segundos.
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stage stage--flush-top" aria-label="Detalhes do DNS">
+  <div class="shell editorial">
+    <div class="notecol">
+      <div class="n">
+        <h3>PORTA 53, UDP E TCP</h3>
+        <p>
+          A consulta é pequena e urgente, então vai por UDP. O DNS recorre ao TCP quando a resposta
+          não cabe numa mensagem UDP e na transferência de zona entre servidores.
+        </p>
+      </div>
+      <div class="n warn">
+        <h3>TUDO EM TEXTO ABERTO</h3>
+        <p>
+          Quem estiver no caminho vê todos os nomes que você consultou, mesmo que os sites em si
+          estejam protegidos. DNS sobre TLS e DNS sobre HTTPS existem para fechar essa brecha. É o
+          primeiro rombo desta viagem, e não será o último.
+        </p>
+      </div>
+    </div>
+    <div>
+      <p class="tiny eyebrow" id="zone-caption">UMA ZONA GUARDA MAIS QUE ENDEREÇOS</p>
+      <div class="scrollx">
+        <table class="tbl" aria-labelledby="zone-caption">
+          <thead>
+            <tr>
+              <th scope="col">tipo</th>
+              <th scope="col">exemplo</th>
+              <th scope="col">para quê</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A</td>
+              <td>exemplo.com para 93.184.216.34</td>
+              <td>endereço IPv4</td>
+            </tr>
+            <tr>
+              <td>AAAA</td>
+              <td>exemplo.com para 2606:2800::1</td>
+              <td>endereço IPv6</td>
+            </tr>
+            <tr>
+              <td>CNAME</td>
+              <td>www para exemplo.com</td>
+              <td>apelido de outro nome</td>
+            </tr>
+            <tr>
+              <td>MX</td>
+              <td>exemplo.com para mail.exemplo.com</td>
+              <td>quem recebe o e-mail</td>
+            </tr>
+            <tr>
+              <td>TXT</td>
+              <td>"v=spf1 include:..."</td>
+              <td>texto livre e regras antifraude</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead lead--note">
+        O MX e o TXT parecem os menos importantes da lista. Eles voltam na última parada, e sem eles
+        o e-mail simplesmente não funciona.
+      </p>
+    </div>
+  </div>
+</section>

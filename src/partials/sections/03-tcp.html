@@ -1,0 +1,55 @@
+<section class="stage" id="tcp" data-stage="03" data-name="TCP" aria-labelledby="tcp-title">
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">03</span>
+      <span class="rule"></span>
+      <span class="of">abrir a conversa</span>
+    </div>
+    <div class="stage-intro">
+      <h2 class="rv d1" id="tcp-title">
+        Com o endereço em mãos,
+        <span class="thin">três pacotes abrem a conexão.</span>
+      </h2>
+      <p class="lead rv d2">
+        Antes de qualquer dado útil, as duas pontas combinam que estão vivas, prontas e
+        sincronizadas. O TCP faz isso com um aperto de mão de três tempos. Só depois dele a camada
+        de aplicação tem por onde falar.
+      </p>
+    </div>
+
+    <div class="panel rails block rv d3" id="tcpRails">
+      <div class="heads">
+        <span>SEU COMPUTADOR</span>
+        <span id="tcpTarget">93.184.216.34:443</span>
+      </div>
+      <div class="lanes" aria-hidden="true">
+        <div class="lane">
+          <span class="arrowline"></span>
+          <span class="flight">SYN</span>
+        </div>
+        <div class="lane">
+          <span class="arrowline"></span>
+          <span class="flight">SYN + ACK</span>
+        </div>
+        <div class="lane">
+          <span class="arrowline"></span>
+          <span class="flight">ACK</span>
+        </div>
+      </div>
+      <p class="state" id="tcpState" aria-live="polite">aguardando</p>
+      <p class="drop" id="tcpDrop">pacote perdido, o TCP reenvia</p>
+      <div class="btnrow">
+        <button class="btn" type="button" id="tcpRun">SIMULAR CONEXÃO</button>
+        <label class="swt">
+          <input type="checkbox" id="tcpLoss" />
+          <span class="track"></span>
+          <span>PERDER O PRIMEIRO PACOTE</span>
+        </label>
+      </div>
+    </div>
+    <p class="lead lead--note rv">
+      O IP entregou o pacote na máquina certa. O número 443 no fim do endereço é o que entrega ao
+      programa certo dentro dela, e quem lê esse número é justamente a camada de transporte.
+    </p>
+  </div>
+</section>
