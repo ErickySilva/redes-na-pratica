@@ -1,0 +1,95 @@
+<section class="stage" id="url" data-stage="01" data-name="URL" aria-labelledby="url-title">
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">01</span>
+      <span class="rule"></span>
+      <span class="of">o endereço</span>
+    </div>
+    <h2 class="rv d1" id="url-title">
+      Antes de sair, o navegador
+      <span class="thin">precisa entender o que você digitou.</span>
+    </h2>
+    <p class="lead stage-lead rv d2">
+      Aquela linha não é um texto solto. Cada pedaço dela responde a uma pergunta diferente, e um
+      deles é o único que vai sair da sua máquina primeiro. Toque em qualquer parte.
+    </p>
+
+    <div class="urlwrap rv d3">
+      <div class="urlline" id="urlLine" role="tablist" aria-label="Partes da URL">
+        <button
+          class="useg"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="urlOut"
+          style="--c: var(--sig)"
+          data-n="esquema"
+          data-d="Qual protocolo usar para buscar o recurso. Poderia ser <b>http</b>, <b>ftp</b>, <b>mailto</b> ou <b>ssh</b>. O <b>s</b> no final indica que a conversa vai dentro de um túnel TLS."
+        >
+          https://<i class="stem"></i>
+        </button>
+        <button
+          class="useg"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="urlOut"
+          style="--c: var(--safe)"
+          data-n="host"
+          data-d="Quem responde. <b>Este é o único pedaço que sai da sua máquina primeiro</b>, porque é ele que precisa virar um endereço IP antes de qualquer outra coisa acontecer."
+        >
+          <span data-dom>www.exemplo.com</span><i class="stem"></i>
+        </button>
+        <button
+          class="useg"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="urlOut"
+          style="--c: var(--warn)"
+          data-n="porta"
+          data-d="Qual programa dentro daquele servidor atende. Quando é a porta padrão do esquema, o navegador preenche sozinho e ela nem aparece: <b>443</b> para https, <b>80</b> para http."
+        >
+          :443<i class="stem"></i>
+        </button>
+        <button
+          class="useg"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="urlOut"
+          style="--c: var(--text)"
+          data-n="caminho"
+          data-d="Qual recurso dentro do servidor. É o que separa uma página da outra dentro do mesmo site."
+        >
+          /produtos<i class="stem"></i>
+        </button>
+        <button
+          class="useg"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="urlOut"
+          style="--c: var(--wire)"
+          data-n="parâmetros"
+          data-d="Informações extras do pedido: filtros, páginas, identificadores. Por viajarem na URL, ficam registrados no histórico e nos logs do servidor, e é por isso que senha nunca vai por aqui."
+        >
+          ?id=42<i class="stem"></i>
+        </button>
+        <button
+          class="useg"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="urlOut"
+          style="--c: var(--faint)"
+          data-n="fragmento"
+          data-d="Trecho da página para onde rolar. <b>Nunca chega ao servidor</b>: é instrução exclusiva do navegador, resolvida depois que a página já foi baixada."
+        >
+          #reviews<i class="stem"></i>
+        </button>
+      </div>
+      <div class="urlout" id="urlOut" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,189 @@
+<section class="stage" id="email" data-stage="09" data-name="E-MAIL" aria-labelledby="email-title">
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">09</span>
+      <span class="rule"></span>
+      <span class="of">a exceção</span>
+    </div>
+    <div class="stage-intro">
+      <h2 class="rv d1" id="email-title">
+        Tudo até aqui exigia
+        <span class="thin">os dois lados acordados ao mesmo tempo.</span>
+      </h2>
+      <p class="lead rv d2">
+        O e-mail não. A destinatária pode estar com o celular desligado há três semanas: a mensagem
+        chega, fica guardada num servidor e espera. Por isso o correio não usa um protocolo, usa
+        três. Escolha uma etapa do caminho.
+      </p>
+    </div>
+
+    <div class="panel journey block rv d3">
+      <div class="pills" id="mailLegs" role="tablist" aria-label="Etapas do e-mail">
+        <button
+          class="pill"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="jleg"
+          data-leg="smtp"
+        >
+          SMTP
+        </button>
+        <button
+          class="pill"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="jleg"
+          data-leg="pop"
+        >
+          POP3
+        </button>
+        <button
+          class="pill"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="jleg"
+          data-leg="imap"
+        >
+          IMAP
+        </button>
+      </div>
+      <div class="jtrack">
+        <span class="jline" aria-hidden="true"></span>
+        <ol class="jnodes">
+          <li class="jnode" data-j="0">
+            <span class="bulb">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6" />
+              </svg>
+            </span>
+            <span class="t">você</span>
+          </li>
+          <li class="jnode" data-j="1">
+            <span class="bulb">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+              >
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M3 8l9 6 9-6" />
+              </svg>
+            </span>
+            <span class="t">seu servidor</span>
+          </li>
+          <li class="jnode" data-j="2">
+            <span class="bulb">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+              >
+                <rect x="3" y="4" width="18" height="7" rx="1.5" />
+                <rect x="3" y="13" width="18" height="7" rx="1.5" />
+                <path d="M7 7.5h.01M7 16.5h.01" />
+              </svg>
+            </span>
+            <span class="t">servidor dela</span>
+          </li>
+          <li class="jnode" data-j="3">
+            <span class="bulb">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+              >
+                <path d="M4 9h16v11H4z" />
+                <path d="M4 9l3-5h10l3 5" />
+                <path d="M9 13h6" />
+              </svg>
+            </span>
+            <span class="t">caixa postal</span>
+          </li>
+          <li class="jnode" data-j="4">
+            <span class="bulb">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+              >
+                <rect x="7" y="2" width="10" height="20" rx="2" />
+                <path d="M11 18h2" />
+              </svg>
+            </span>
+            <span class="t">ela lê</span>
+          </li>
+        </ol>
+      </div>
+      <div class="jleg" id="jleg" role="tabpanel" aria-live="polite">
+        <span class="lg" id="jlegName"></span>
+        <p id="jlegText"></p>
+      </div>
+    </div>
+
+    <div class="block rv">
+      <p class="tiny eyebrow">MARQUE A MENSAGEM COMO LIDA NO CELULAR E OLHE O NOTEBOOK</p>
+      <div class="btnrow btnrow--flush">
+        <button class="btn" type="button" id="readBtn">MARCAR COMO LIDA</button>
+        <button class="btn ghost" type="button" id="mailReset">REINICIAR</button>
+      </div>
+      <div class="devices" aria-live="polite">
+        <div class="dev">
+          <h3>CELULAR</h3>
+          <p id="dPhone"></p>
+        </div>
+        <div class="dev">
+          <h3>NOTEBOOK</h3>
+          <p id="dLap"></p>
+        </div>
+        <div class="dev">
+          <h3>SERVIDOR</h3>
+          <p id="dSrv"></p>
+        </div>
+      </div>
+      <p class="lead lead--note" id="mailExplain"></p>
+    </div>
+
+    <div class="editorial block--lg rv">
+      <div class="notecol">
+        <div class="n">
+          <h3>PORTAS DO CORREIO</h3>
+          <p>
+            25 entre servidores, 587 para o seu aplicativo enviar com STARTTLS e 465 para envio já
+            cifrado desde o primeiro byte. Para leitura: 110 e 995 no POP3, 143 e 993 no IMAP, sendo
+            as maiores sempre as versões com TLS.
+          </p>
+        </div>
+      </div>
+      <div class="notecol">
+        <div class="n warn">
+          <h3>O SMTP NÃO CONFERE O REMETENTE</h3>
+          <p>
+            Nada dentro do protocolo impede alguém de escrever o seu endereço no campo de origem. É
+            a base de quase todo phishing. A solução veio de fora e através do DNS: SPF lista quem
+            pode enviar pelo domínio, DKIM assina a mensagem e DMARC diz o que fazer quando um dos
+            dois falha. Os três moram em registros TXT, aquele tipo que parecia o menos importante
+            da tabela da parada 02.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

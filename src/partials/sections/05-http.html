@@ -1,0 +1,139 @@
+<section class="stage" id="http" data-stage="05" data-name="HTTP" aria-labelledby="http-title">
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">05</span>
+      <span class="rule"></span>
+      <span class="of">o pedido</span>
+    </div>
+    <div class="stage-intro">
+      <h2 class="rv d1" id="http-title">
+        Agora sim:
+        <span class="thin">alguém pede alguma coisa.</span>
+      </h2>
+      <p class="lead rv d2">
+        O HTTP é texto que dá para ler com os próprios olhos. Escolha o verbo do pedido e a resposta
+        que o servidor devolve, e veja as duas mensagens mudarem.
+      </p>
+    </div>
+
+    <div class="pg block rv d3">
+      <div class="col">
+        <div class="colhd">
+          <span>REQUISIÇÃO</span>
+          <span>o que sai do navegador</span>
+        </div>
+        <div class="pills" id="methods" role="tablist" aria-label="Método HTTP">
+          <button class="pill" type="button" role="tab" aria-selected="true" data-m="GET">
+            GET
+          </button>
+          <button class="pill" type="button" role="tab" aria-selected="false" data-m="POST">
+            POST
+          </button>
+          <button class="pill" type="button" role="tab" aria-selected="false" data-m="PUT">
+            PUT
+          </button>
+          <button class="pill" type="button" role="tab" aria-selected="false" data-m="DELETE">
+            DELETE
+          </button>
+        </div>
+        <form class="inputline" id="reqForm">
+          <label class="sr-only" for="pathIn">Caminho do recurso</label>
+          <input
+            class="field"
+            id="pathIn"
+            value="/produtos?id=42"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="btn" type="submit">ENVIAR</button>
+        </form>
+        <pre id="reqOut"></pre>
+        <div class="meaning" id="methodMeaning" aria-live="polite"></div>
+      </div>
+      <div class="col">
+        <div class="colhd">
+          <span>RESPOSTA</span>
+          <span>o que o servidor devolve</span>
+        </div>
+        <div class="pills" id="statuses" role="tablist" aria-label="Código de status">
+          <button class="pill s2" type="button" role="tab" aria-selected="true" data-s="200">
+            200
+          </button>
+          <button class="pill s3" type="button" role="tab" aria-selected="false" data-s="301">
+            301
+          </button>
+          <button class="pill s3" type="button" role="tab" aria-selected="false" data-s="302">
+            302
+          </button>
+          <button class="pill s4" type="button" role="tab" aria-selected="false" data-s="400">
+            400
+          </button>
+          <button class="pill s4" type="button" role="tab" aria-selected="false" data-s="401">
+            401
+          </button>
+          <button class="pill s4" type="button" role="tab" aria-selected="false" data-s="403">
+            403
+          </button>
+          <button class="pill s4" type="button" role="tab" aria-selected="false" data-s="404">
+            404
+          </button>
+          <button class="pill s5" type="button" role="tab" aria-selected="false" data-s="500">
+            500
+          </button>
+          <button class="pill s5" type="button" role="tab" aria-selected="false" data-s="502">
+            502
+          </button>
+          <button class="pill s5" type="button" role="tab" aria-selected="false" data-s="503">
+            503
+          </button>
+        </div>
+        <pre id="respOut"></pre>
+        <div class="classband" id="band" aria-hidden="true">
+          <i data-c="1"></i>
+          <i data-c="2"></i>
+          <i data-c="3"></i>
+          <i data-c="4"></i>
+          <i data-c="5"></i>
+        </div>
+        <div class="meaning" id="statusMeaning" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="editorial block--lg rv">
+      <div class="notecol">
+        <div class="n">
+          <h3>A LINHA EM BRANCO</h3>
+          <p>
+            Não é estética. É ela que marca, na sintaxe do protocolo, onde terminam os cabeçalhos e
+            começa o corpo da mensagem.
+          </p>
+        </div>
+        <div class="n">
+          <h3>O CABEÇALHO HOST</h3>
+          <p>
+            Obrigatório desde o HTTP/1.1, porque um mesmo endereço IP hospeda centenas de sites
+            diferentes. É ele que diz qual deles você quer.
+          </p>
+        </div>
+      </div>
+      <div class="notecol">
+        <div class="n">
+          <h3>O PROTOCOLO NÃO LEMBRA DE VOCÊ</h3>
+          <p>
+            Cada requisição chega como se fosse a primeira da vida. Quem carrega o estado é o
+            cliente: no login o servidor entrega um identificador, e o navegador o reapresenta em
+            todo pedido seguinte, como uma pulseira de festa conferida na entrada.
+          </p>
+        </div>
+        <div class="n">
+          <h3>4XX CONTRA 5XX</h3>
+          <p>
+            A regra que resolve quase tudo: quatrocentos e alguma coisa é erro de quem pediu,
+            quinhentos e alguma coisa é erro do servidor. E a dupla que mais confunde: 401 pergunta
+            quem é você, 403 já sabe e nega mesmo assim.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

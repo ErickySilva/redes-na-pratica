@@ -1,0 +1,132 @@
+<section
+  class="stage"
+  id="terminal"
+  data-stage="08"
+  data-name="TERMINAL"
+  aria-labelledby="terminal-title"
+>
+  <div class="shell">
+    <div class="stage-mark rv">
+      <span class="no">08</span>
+      <span class="rule"></span>
+      <span class="of">fora do navegador</span>
+    </div>
+    <div class="stage-intro">
+      <h2 class="rv d1" id="terminal-title">
+        A web é só uma inquilina.
+        <span class="thin">A camada de aplicação é bem maior.</span>
+      </h2>
+      <p class="lead rv d2">
+        Mover um arquivo, operar uma máquina que está em outro estado, entregar uma mensagem para
+        alguém que está com o celular desligado. Cada uma dessas necessidades virou um protocolo, e
+        nenhuma delas passa por navegador.
+      </p>
+    </div>
+
+    <div class="scene-grid scene-grid--top block rv d3">
+      <div class="term">
+        <div class="bar" aria-hidden="true">
+          <i></i>
+          <i></i>
+          <i></i>
+          <span>aluno@notebook</span>
+        </div>
+        <pre id="termOut" aria-live="polite"></pre>
+        <div class="cmdline">
+          <span aria-hidden="true">$</span>
+          <input
+            id="cmdIn"
+            placeholder="digite um comando e pressione Enter (tente: help)"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Linha de comando simulada"
+          />
+        </div>
+      </div>
+      <div class="notecol">
+        <div class="n">
+          <h3>FTP, DOIS CANAIS</h3>
+          <p>
+            Uma conexão de controle, na porta 21, que fica aberta a sessão inteira e leva só os
+            comandos. E uma conexão de dados, que abre e fecha a cada arquivo. É esse desenho de
+            1971 que produz o problema do diagrama abaixo.
+          </p>
+        </div>
+        <div class="n">
+          <h3>FTPS E SFTP NÃO SÃO PARENTES</h3>
+          <p>
+            FTPS é o FTP de sempre dentro de TLS, com os mesmos dois canais. SFTP é um protocolo
+            próprio que roda como subsistema do SSH, com uma conexão só, na porta 22. E o SSH, por
+            si só, não é um protocolo de arquivos: é uma sessão remota segura sobre a qual o SFTP
+            foi construído.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel ftp rv" id="ftp">
+      <p class="tiny eyebrow">FTP: QUEM ABRE A CONEXÃO DE DADOS</p>
+      <div class="pills" id="ftpMode" role="tablist" aria-label="Modo do FTP">
+        <button class="pill" type="button" role="tab" aria-selected="true" data-mode="ativo">
+          MODO ATIVO
+        </button>
+        <button class="pill" type="button" role="tab" aria-selected="false" data-mode="passivo">
+          MODO PASSIVO
+        </button>
+      </div>
+      <div class="ftpstage" aria-hidden="true">
+        <div class="ftpbox">
+          CLIENTE
+          <br />
+          <span class="is-faint">atrás de NAT</span>
+        </div>
+        <div class="ftpwall"></div>
+        <div class="ftpbox">
+          SERVIDOR
+          <br />
+          <span class="is-faint">porta 21</span>
+        </div>
+        <div class="ftpline ftpline--control">
+          <span class="ftplabel" id="ftpLab1">controle</span>
+          <span class="ftpdot" id="ftpD1"></span>
+        </div>
+        <div class="ftpline ftpline--data">
+          <span class="ftplabel" id="ftpLab2">dados</span>
+          <span class="ftpdot" id="ftpD2"></span>
+        </div>
+      </div>
+      <div class="btnrow">
+        <button class="btn" type="button" id="ftpRun">ABRIR A TRANSFERÊNCIA</button>
+      </div>
+      <p class="lead lead--note" id="ftpSay" aria-live="polite"></p>
+    </div>
+
+    <div class="wire rv">
+      <label class="lab" for="pw">DIGITE UMA SENHA E VEJA O QUE SAI NA REDE</label>
+      <input
+        class="field"
+        id="pw"
+        type="text"
+        value="root@2024"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <div class="wirebox">
+        <div class="w bad">
+          <h3>TELNET, PORTA 23</h3>
+          <div class="v" id="wTel"></div>
+        </div>
+        <div class="w good">
+          <h3>SSH, PORTA 22</h3>
+          <div class="v" id="wSsh"></div>
+        </div>
+      </div>
+      <p class="lead lead--note">
+        Nada disso sai do seu navegador. O Telnet manda cada tecla em texto aberto, inclusive a
+        senha de administrador. O SSH cifra a sessão inteira, confere a identidade do servidor e
+        aceita login por par de chaves, em que a chave privada nunca sai do seu computador e nenhuma
+        senha trafega.
+      </p>
+    </div>
+  </div>
+</section>
