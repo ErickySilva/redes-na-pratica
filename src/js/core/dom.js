@@ -3,9 +3,7 @@
 export const $ = (sel, ctx = document) => ctx.querySelector(sel);
 export const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-export const clamp = (v, min, max) => (v < min ? min : v > max ? max : v);
-
-export const escapeHtml = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+export { clamp, escapeHtml } from "../lib/text.js";
 
 export const reducedMotion =
   typeof window.matchMedia === "function" &&
