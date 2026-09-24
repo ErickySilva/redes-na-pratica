@@ -33,7 +33,7 @@
 }
 .pg pre {
   margin: 20px 0 0;
-  color: #1b3b56;
+  color: var(--text-code);
   font-family: var(--mono);
   font-size: clamp(12px, 1.25vw, 14.5px);
   line-height: 1.85;

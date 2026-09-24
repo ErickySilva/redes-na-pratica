@@ -24,13 +24,11 @@
   gap: clamp(12px, 2.5vw, 28px);
   padding: clamp(13px, 2vh, 20px) 0;
   border-bottom: 1px solid var(--hair-soft);
-  opacity: 0.28;
-  transition:
-    opacity 500ms var(--ease),
-    color 500ms var(--ease);
+  color: var(--faint);
+  transition: color 500ms var(--ease);
 }
 .chk.on {
-  opacity: 1;
+  color: var(--text);
 }
 .chk .nm {
   font-family: var(--disp);
@@ -60,7 +58,7 @@
 }
 .chk.on .tickmark {
   border-color: var(--safe);
-  background: rgba(17, 128, 90, 0.08);
+  background: color-mix(in srgb, var(--safe) 8%, transparent);
   color: var(--safe);
 }
 
@@ -139,12 +137,12 @@
 }
 .opt.right {
   border-color: var(--safe);
-  background: rgba(17, 128, 90, 0.1);
+  background: color-mix(in srgb, var(--safe) 10%, transparent);
   color: var(--safe);
 }
 .opt.wrong {
   border-color: var(--alarm);
-  background: rgba(195, 58, 45, 0.08);
+  background: color-mix(in srgb, var(--alarm) 8%, transparent);
   color: var(--alarm);
 }
 .opt[disabled] {

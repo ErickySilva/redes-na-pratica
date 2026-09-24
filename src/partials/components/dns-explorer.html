@@ -1,0 +1,89 @@
+<div class="shell">
+  <div class="panel dnsx block rv" id="dnsx">
+    <div class="dnsx-hd">
+      <p class="tiny" id="dnsx-title">E AGORA DE VERDADE: CONSULTE QUALQUER DOMÍNIO</p>
+      <span class="live"><span class="live-dot" aria-hidden="true"></span>ao vivo</span>
+    </div>
+    <form class="inputline" id="dnsxForm" aria-labelledby="dnsx-title">
+      <label class="sr-only" for="dnsxName">Domínio</label>
+      <input
+        class="field"
+        id="dnsxName"
+        value="www.exemplo.com"
+        autocomplete="off"
+        spellcheck="false"
+        inputmode="url"
+      />
+      <button class="btn" type="submit">CONSULTAR</button>
+    </form>
+    <div class="pills dnsx-types" id="dnsxTypes" role="tablist" aria-label="Tipo de registro">
+      <button
+        class="pill"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="dnsxOut"
+        data-type="A"
+      >
+        A
+      </button>
+      <button
+        class="pill"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="dnsxOut"
+        data-type="AAAA"
+      >
+        AAAA
+      </button>
+      <button
+        class="pill"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="dnsxOut"
+        data-type="MX"
+      >
+        MX
+      </button>
+      <button
+        class="pill"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="dnsxOut"
+        data-type="TXT"
+      >
+        TXT
+      </button>
+      <button
+        class="pill"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="dnsxOut"
+        data-type="NS"
+      >
+        NS
+      </button>
+      <button
+        class="pill"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="dnsxOut"
+        data-type="DMARC"
+      >
+        DMARC
+      </button>
+    </div>
+    <div class="dnsx-out" id="dnsxOut" role="tabpanel" aria-live="polite"></div>
+    <p class="dnsx-note">
+      A consulta sai do seu navegador direto para a Cloudflare (1.1.1.1), ou para o Google se ela
+      falhar, por <b>DNS sobre HTTPS</b>: o mesmo DNS, dentro de um túnel TLS. É a solução para o
+      "tudo em texto aberto" do quadro acima. Experimente <b>gmail.com</b> em MX, ou um domínio que
+      não existe.
+    </p>
+  </div>
+</div>

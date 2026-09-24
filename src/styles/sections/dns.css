@@ -41,11 +41,20 @@
   grid-template-columns: 46px 1fr;
   align-items: center;
   gap: 16px;
-  opacity: 0.3;
-  transition: opacity var(--t) var(--ease);
 }
-.knode.on {
-  opacity: 1;
+/* Inativo = cor apagada, não opacidade: o texto continua legível (WCAG AA). */
+.knode .dot,
+.knode .nm,
+.knode .sub {
+  transition:
+    color var(--t) var(--ease),
+    border-color var(--t) var(--ease),
+    background var(--t) var(--ease),
+    box-shadow var(--t) var(--ease);
+}
+.knode:not(.on) .nm,
+.knode:not(.on) .sub {
+  color: var(--faint);
 }
 .knode .dot {
   display: grid;
@@ -66,12 +75,12 @@
 .knode.on .dot {
   border-color: var(--sig);
   color: var(--sig);
-  box-shadow: 0 0 0 6px rgba(14, 127, 196, 0.08);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--sig) 8%, transparent);
 }
 .knode.hit .dot {
   border-color: var(--sig);
   background: var(--sig);
-  color: #fff;
+  color: var(--on-accent);
 }
 .knode .nm {
   font-family: var(--disp);
@@ -85,8 +94,8 @@
   color: var(--muted);
   font-size: 14.5px;
 }
-.knode.skip {
-  opacity: 0.18;
+.knode.skip .dot {
+  border-style: dashed;
 }
 .knode.skip .nm {
   text-decoration: line-through;
@@ -115,4 +124,115 @@
   color: var(--faint);
   font-family: var(--mono);
   font-size: 12.5px;
+}
+
+/* ---------- explorador DNS (consulta real) ---------- */
+.dnsx {
+  margin-top: clamp(40px, 7vh, 70px);
+}
+.dnsx-hd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--safe);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--safe);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--safe) 50%, transparent);
+  animation: pulse 1.8s var(--ease) infinite;
+}
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+.dnsx-types {
+  margin-top: 16px;
+}
+.dnsx-out {
+  min-height: 150px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--hair);
+}
+.dnsx-status {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.dnsx-status[data-tone="ok"] b {
+  color: var(--safe);
+}
+.dnsx-status[data-tone="warn"] b {
+  color: var(--warn);
+}
+.dnsx-status[data-tone="error"],
+.dnsx-status[data-tone="error"] b {
+  color: var(--alarm);
+}
+.dnsx-status[data-tone="busy"]::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  margin-left: 6px;
+  background: var(--sig);
+  vertical-align: -2px;
+  animation: blink 1s steps(1) infinite;
+}
+.dnsx-tbl td {
+  padding-block: 9px;
+}
+.dnsx-data {
+  word-break: break-all;
+}
+.dnsx-explain {
+  max-width: 70ch;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: var(--fs-note);
+}
+.dnsx-explain b {
+  color: var(--text);
+  font-weight: 600;
+}
+.dnsx-note {
+  max-width: 78ch;
+  margin-top: 20px;
+  color: var(--faint);
+  font-size: 14px;
+}
+.dnsx-note b {
+  color: var(--muted);
+  font-weight: 600;
+}
+.tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: var(--safe);
+  color: var(--on-accent);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  vertical-align: 1px;
+}
+.tag--soft {
+  background: var(--hair);
+  color: var(--muted);
 }

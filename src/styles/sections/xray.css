@@ -1,0 +1,261 @@
+/* ==========================================================================
+   06+ Raio-X: cascata de rede real desta página
+   ========================================================================== */
+
+/* cores por fase (documento) e por tipo de recurso */
+.xk--dns {
+  --k: var(--wire);
+}
+.xk--tcp {
+  --k: var(--warn);
+}
+.xk--tls {
+  --k: var(--safe);
+}
+.xk--ttfb {
+  --k: var(--faint);
+}
+.xk--download,
+.xk--html {
+  --k: var(--sig);
+}
+.xk--css {
+  --k: var(--wire);
+}
+.xk--js {
+  --k: var(--warn);
+}
+.xk--font {
+  --k: var(--safe);
+}
+.xk--data {
+  --k: var(--alarm);
+}
+.xk--img,
+.xk--other {
+  --k: var(--muted);
+}
+
+.xray-sum {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(18px, 4vw, 54px);
+  margin-bottom: 26px;
+}
+.xray-sum div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+}
+.xray-sum dd {
+  margin: 0;
+  font-family: var(--disp);
+  font-size: clamp(24px, 3.4vw, 40px);
+  font-variation-settings: "wdth" 116;
+  font-weight: 800;
+  line-height: 1;
+}
+.xray-sum dt {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+}
+
+.xray-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0 0 18px;
+  padding: 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  list-style: none;
+}
+.xray-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.xray-legend .sep {
+  width: 1px;
+  height: 14px;
+  background: var(--hair);
+}
+.xk {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--k);
+}
+
+.xray-rows {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.xrow {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr) 64px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+}
+.xrow:hover,
+.xrow.is-active {
+  background: color-mix(in srgb, var(--sig) 7%, transparent);
+}
+.xname {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.xdot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--k);
+}
+.xtrack {
+  position: relative;
+  height: 14px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(90deg, var(--hair-soft) 0 1px, transparent 1px 10%);
+}
+.xbar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--k) 75%, transparent);
+  transform-origin: left;
+  animation: grow var(--t-slow) var(--ease-out) both;
+}
+.xbar.is-cached {
+  background: repeating-linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--k) 55%, transparent) 0 4px,
+    transparent 4px 7px
+  );
+}
+.xseg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--k);
+  transform-origin: left;
+  animation: grow var(--t-slow) var(--ease-out) both;
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+.xms {
+  color: var(--muted);
+  text-align: right;
+}
+
+.xray-axis {
+  position: relative;
+  height: 20px;
+  /* alinhado com a coluna das barras: padding 8 + nome 200 + gap 14 */
+  margin: 8px 86px 0 222px;
+  border-top: 1px solid var(--hair);
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 10.5px;
+}
+.xray-axis span {
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.xray-axis span:first-child {
+  transform: none;
+}
+
+.xray-detail {
+  min-height: 5.5em;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hair);
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.xray-detail b {
+  color: var(--text);
+  font-weight: 600;
+}
+.xray-detail p {
+  margin-top: 8px;
+}
+.xray-phases {
+  display: grid;
+  gap: 4px;
+  margin: 10px 0 0;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  list-style: none;
+}
+.xray-phases li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 700px) {
+  .xrow {
+    grid-template-columns: minmax(0, 96px) minmax(0, 1fr) 52px;
+    gap: 8px;
+    font-size: 11.5px;
+  }
+  .xray-axis {
+    margin: 8px 68px 0 112px;
+  }
+}
+
+.xray-late {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--hair);
+}
+.xray-late .tiny {
+  margin-bottom: 8px;
+}
+.xlate {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  color: var(--faint);
+  font-size: 11.5px;
+}
+.xray-late .xtrack {
+  background: none;
+}
+.xray-sum .xray-sum-proto dd {
+  font-size: clamp(18px, 2vw, 26px);
+  font-variation-settings: "wdth" 104;
+}

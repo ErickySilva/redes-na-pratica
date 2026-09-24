@@ -37,13 +37,13 @@
   place-items: center;
   width: clamp(210px, 34vw, 330px);
   height: clamp(92px, 13vw, 124px);
-  border: 1px solid rgba(20, 84, 138, 0.28);
+  border: 1px solid color-mix(in srgb, var(--line) 28%, transparent);
   border-radius: 16px;
-  background: linear-gradient(180deg, #ffffff, #dce9f5);
+  background: linear-gradient(180deg, var(--key-top), var(--key-bottom));
   box-shadow:
-    0 11px 0 -2px #bbd2e6,
-    0 18px 30px rgba(11, 33, 52, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 11px 0 -2px var(--key-edge),
+    0 18px 30px color-mix(in srgb, var(--shadow) 16%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--key-shine) 90%, transparent);
   color: var(--text);
   font-family: var(--disp);
   font-size: clamp(24px, 3.4vw, 38px);
@@ -67,9 +67,9 @@
 .keycap:active {
   transform: translateY(9px);
   box-shadow:
-    0 2px 0 -1px #bbd2e6,
-    0 5px 12px rgba(11, 33, 52, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    0 2px 0 -1px var(--key-edge),
+    0 5px 12px color-mix(in srgb, var(--shadow) 14%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--key-shine) 70%, transparent);
 }
 .keycap::after {
   content: "";
@@ -80,7 +80,7 @@
   transition: box-shadow 600ms var(--ease-out);
 }
 .keycap.press::after {
-  box-shadow: 0 0 0 24px rgba(14, 127, 196, 0);
+  box-shadow: 0 0 0 24px color-mix(in srgb, var(--sig) 0%, transparent);
 }
 
 .hero h1 {
@@ -109,7 +109,7 @@
   border: 1px solid var(--hair);
   border-radius: 999px;
   background: var(--pane);
-  box-shadow: 0 6px 20px rgba(11, 33, 52, 0.07);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--shadow) 7%, transparent);
   opacity: 0;
   transform: translateY(10px);
   transition:
@@ -207,5 +207,46 @@
   }
   .scrollcue {
     bottom: 16px;
+  }
+}
+
+.domnote {
+  min-height: 1.5em;
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+.domnote b {
+  color: var(--text);
+  font-weight: 500;
+}
+.domnote[data-tone="ok"] b:last-of-type {
+  color: var(--safe);
+}
+.domnote[data-tone="error"] {
+  color: var(--alarm);
+}
+.domnote[data-tone="busy"]::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 1em;
+  margin-left: 4px;
+  background: var(--sig);
+  vertical-align: -2px;
+  animation: blink 1s steps(1) infinite;
+}
+.field[aria-invalid="true"] {
+  border-color: var(--alarm);
+}
+.hint-keys {
+  display: block;
+  margin-top: 10px;
+  letter-spacing: 0.08em;
+}
+@media (hover: none) {
+  .hint-keys {
+    display: none; /* sem teclado físico, a dica não ajuda */
   }
 }

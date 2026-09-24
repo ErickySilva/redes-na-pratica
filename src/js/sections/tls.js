@@ -1,9 +1,9 @@
 /** 04 TLS: liga/desliga a criptografia e simula um certificado inválido. */
 import { $, reducedMotion, timerGroup } from "../core/dom.js";
+import { scrambleFrame } from "../lib/cipher.js";
 
 const PLAIN = "senha=123456";
 const CIPHER = "8f3a2b91c7d4e05b1a9c";
-const HEX = "0123456789abcdef";
 
 const SAYS = {
   open: "O roteador do café, o provedor e qualquer máquina intermediária leem a linha acima exatamente como ela está.",
@@ -37,15 +37,7 @@ export function initTls() {
     const len = Math.max(payload.textContent.length, to.length);
     const steps = 14;
     for (let s = 0; s <= steps; s++) {
-      timers.add(() => {
-        let out = "";
-        for (let i = 0; i < len; i++) {
-          if (i < to.length && i / len < s / steps) out += to[i];
-          else if (s === steps) out += to[i] || "";
-          else out += HEX[(Math.random() * 16) | 0];
-        }
-        payload.textContent = out;
-      }, s * 45);
+      timers.add(() => (payload.textContent = scrambleFrame(to, len, s / steps)), s * 45);
     }
   }
 

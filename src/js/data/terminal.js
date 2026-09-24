@@ -10,25 +10,38 @@ export const INTRO_SCRIPT = [
   ['<span class="cm">Connected to servidor.</span>', 180],
   ["sftp&gt; put relatorio.pdf", 260],
   ['<span class="ok">Uploading relatorio.pdf  100%  2.4MB</span>', 200],
-  ['<span class="p">$</span> <span class="caret"></span>', 0],
+  [
+    '<span class="cm"># dica: estes comandos são de mentira, mas "dig" consulta o DNS de verdade</span>',
+    0,
+  ],
 ];
 
-export const HELP =
-  'comandos disponíveis: <span class="p">ssh</span>, <span class="p">sftp</span>, <span class="p">dig</span>, <span class="p">nslookup</span>, <span class="p">curl</span>, <span class="p">telnet</span>, <span class="p">ls</span>, <span class="p">clear</span>';
+/** Comandos com consulta real à rede (tratados de forma assíncrona pelo terminal). */
+export const NETWORK_COMMANDS = ["dig", "nslookup"];
+
+export const HELP = [
+  '<span class="cm">comandos disponíveis:</span>',
+  '  <span class="p">dig</span> [domínio] [tipo]   consulta DNS <span class="ok">real</span> (A, AAAA, MX, TXT, NS, CNAME)',
+  '  <span class="p">nslookup</span> [domínio]      o mesmo, no estilo do Windows',
+  '  <span class="p">ssh</span>, <span class="p">sftp</span>, <span class="p">telnet</span>      sessões simuladas',
+  '  <span class="p">curl</span>, <span class="p">ls</span>, <span class="p">whoami</span>      respostas simuladas',
+  '  <span class="p">clear</span>                   limpa a tela',
+  '<span class="cm">↑ e ↓ navegam pelo histórico, Tab completa o comando.</span>',
+];
 
 /**
- * Respostas dos comandos simulados. Cada função recebe os argumentos
- * digitados e o domínio atual, e devolve as linhas (HTML) a imprimir.
+ * Respostas dos comandos simulados. Cada função recebe o contexto
+ * { args, domain, ip, esc } e devolve as linhas (HTML) a imprimir.
  */
 export const COMMANDS = {
-  help: () => [HELP],
-  ssh: () => [
+  help: () => HELP,
+  ssh: ({ ip }) => [
     '<span class="cm">The authenticity of host can\'t be established.</span>',
     '<span class="cm">ED25519 key fingerprint is SHA256:x8Fk...</span>',
-    '<span class="ok">conectado. tudo o que passa daqui em diante vai cifrado.</span>',
+    `<span class="ok">conectado a ${ip}:22. tudo o que passa daqui em diante vai cifrado.</span>`,
   ],
-  telnet: () => [
-    '<span class="er">Trying 93.184.216.34... conectado na porta 23.</span>',
+  telnet: ({ ip }) => [
+    `<span class="er">Trying ${ip}... conectado na porta 23.</span>`,
     '<span class="er">aviso: cada tecla digitada sai em texto aberto pela rede.</span>',
   ],
   sftp: () => [
@@ -38,17 +51,13 @@ export const COMMANDS = {
     '<span class="cm">uma conexão só, porta 22, por dentro do SSH.</span>',
   ],
   ls: () => ["nginx  syslog  auth.log  relatorio.pdf"],
-  dig: (args, domain, esc) => [
-    "Server:  1.1.1.1#53",
-    `Name:    ${esc(args[0] || domain)}`,
-    '<span class="ok">Address: 93.184.216.34</span>',
-    '<span class="cm">resposta do cache do resolvedor, não do servidor autoritativo.</span>',
-  ],
-  curl: () => [
+  whoami: () => ["aluno"],
+  curl: ({ domain, esc }) => [
     '<span class="ok">HTTP/2 200</span>',
     "content-type: text/html",
     "server: nginx",
-    '<span class="cm">só os cabeçalhos. o corpo viria depois da linha em branco.</span>',
+    `<span class="cm">(simulado) um curl de verdade para ${esc(domain)} seria bloqueado pelo CORS do navegador.</span>`,
   ],
 };
-COMMANDS.nslookup = COMMANDS.dig;
+
+export const COMMAND_NAMES = [...Object.keys(COMMANDS), ...NETWORK_COMMANDS, "clear"].sort();

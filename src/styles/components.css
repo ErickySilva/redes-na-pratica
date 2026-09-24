@@ -20,7 +20,7 @@
     transform var(--t-fast) var(--ease);
 }
 .btn:hover {
-  background: rgba(14, 127, 196, 0.08);
+  background: color-mix(in srgb, var(--sig) 8%, transparent);
   border-color: var(--sig);
 }
 .btn:active {
@@ -36,7 +36,7 @@
 }
 .btn.ghost:hover {
   color: var(--text);
-  background: rgba(20, 84, 138, 0.06);
+  background: color-mix(in srgb, var(--line) 6%, transparent);
 }
 
 .btnrow {
@@ -77,11 +77,11 @@
 .pill:hover {
   color: var(--text);
   border-color: var(--sig);
-  background: rgba(14, 127, 196, 0.06);
+  background: color-mix(in srgb, var(--sig) 6%, transparent);
   transform: translateY(-1px);
 }
 .pill[aria-selected="true"] {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--sig);
   border-color: var(--sig);
 }
@@ -98,22 +98,22 @@
   color: var(--alarm);
 }
 .pill.s2[aria-selected="true"] {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--safe);
   border-color: var(--safe);
 }
 .pill.s3[aria-selected="true"] {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--wire);
   border-color: var(--wire);
 }
 .pill.s4[aria-selected="true"] {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--warn);
   border-color: var(--warn);
 }
 .pill.s5[aria-selected="true"] {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--alarm);
   border-color: var(--alarm);
 }
@@ -133,7 +133,7 @@
 .field:focus {
   border-color: var(--sig);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(14, 127, 196, 0.16);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sig) 16%, transparent);
 }
 .lab {
   display: block;
@@ -194,7 +194,7 @@
   height: 26px;
   border: 1px solid var(--hair);
   border-radius: 999px;
-  background: rgba(195, 58, 45, 0.12);
+  background: color-mix(in srgb, var(--alarm) 12%, transparent);
   transition:
     background var(--t) var(--ease),
     border-color var(--t) var(--ease);
@@ -213,8 +213,8 @@
     background var(--t) var(--ease);
 }
 .swt input:checked + .track {
-  background: rgba(17, 128, 90, 0.14);
-  border-color: rgba(17, 128, 90, 0.45);
+  background: color-mix(in srgb, var(--safe) 14%, transparent);
+  border-color: color-mix(in srgb, var(--safe) 45%, transparent);
 }
 .swt input:checked + .track::after {
   transform: translateX(26px);

@@ -23,7 +23,7 @@
             número. Ninguém guarda a lista inteira: a responsabilidade é fatiada em níveis, e cada
             nível sabe apenas a quem indicar.
           </p>
-          <p class="ipout" id="ipOut">93.184.216.34</p>
+          <p class="ipout" id="ipOut" data-ip>93.184.216.34</p>
           <p class="ipmeta" id="ipMeta" aria-live="polite"></p>
           <div class="btnrow">
             <button class="btn" type="button" id="dnsAgain">CONSULTAR DE NOVO</button>
@@ -75,7 +75,9 @@
               <span class="dot">05</span>
               <div>
                 <div class="nm">Servidor autoritativo</div>
-                <div class="sub">"Esse domínio é meu. O endereço é 93.184.216.34."</div>
+                <div class="sub">
+                  "Esse domínio é meu. O endereço é <span data-ip>93.184.216.34</span>."
+                </div>
               </div>
             </li>
             <li class="knode" data-k="5">
@@ -159,4 +161,6 @@
       </p>
     </div>
   </div>
+
+  <!-- @include ../components/dns-explorer.html -->
 </section>
