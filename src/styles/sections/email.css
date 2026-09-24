@@ -1,0 +1,132 @@
+/* ==========================================================================
+   09 E-mail: SMTP, POP3 e IMAP
+   ========================================================================== */
+.jtrack {
+  position: relative;
+  margin: 34px 0 10px;
+}
+.jnodes {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.jline {
+  position: absolute;
+  top: 23px;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: var(--hair);
+}
+@media (max-width: 760px) {
+  .jnodes {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .jline {
+    display: none;
+  }
+}
+.jnode {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+  opacity: 0.35;
+  transition: opacity var(--t) var(--ease);
+}
+.jnode.on {
+  opacity: 1;
+}
+.jnode .bulb {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  background: var(--void-2);
+  transition:
+    border-color var(--t) var(--ease),
+    background var(--t) var(--ease),
+    box-shadow var(--t) var(--ease);
+}
+.jnode.on .bulb {
+  border-color: var(--c, var(--sig));
+  box-shadow: 0 0 0 5px rgba(14, 127, 196, 0.08);
+}
+.jnode svg {
+  width: 22px;
+  height: 22px;
+  color: var(--c, var(--sig));
+}
+.jnode .t {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+}
+
+.jleg {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(14px, 3vw, 36px);
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+}
+@media (max-width: 700px) {
+  .jleg {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+.jleg .lg {
+  color: var(--c, var(--sig));
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+.jleg p {
+  max-width: 58ch;
+  color: var(--muted);
+}
+
+.devices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+@media (max-width: 700px) {
+  .devices {
+    grid-template-columns: 1fr;
+  }
+}
+.dev {
+  padding: 16px 18px;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  background: var(--pane);
+}
+.dev h3 {
+  margin: 0 0 8px;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+}
+.dev p {
+  color: var(--text);
+  font-size: 15px;
+}
+.dev p.empty {
+  color: var(--faint);
+}

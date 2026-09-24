@@ -1,0 +1,49 @@
+/* ==========================================================================
+   Design tokens
+   Cores, tipografia, movimento e espaçamento usados em todo o projeto.
+   ========================================================================== */
+:root {
+  /* superfícies */
+  --void: #eaf3fb;
+  --void-2: #f5fafe;
+  --pane: #ffffff;
+  --pane-2: #e3eef8;
+  --hair: rgba(20, 84, 138, 0.2);
+  --hair-soft: rgba(20, 84, 138, 0.1);
+
+  /* texto */
+  --text: #0b2134;
+  --muted: #42627e;
+  --faint: #6a88a4;
+
+  /* sinal e estados */
+  --sig: #0e7fc4;
+  --sig-dim: #9ccbe8;
+  --sig-glow: rgba(14, 127, 196, 0.22);
+  --safe: #11805a;
+  --warn: #a96a06;
+  --alarm: #c33a2d;
+  --wire: #5b45cc;
+  --ink-term: #071522;
+
+  /* tipografia */
+  --disp: "Anybody", "Arial Narrow", system-ui, sans-serif;
+  --ui: "Inter Tight", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --fs-note: 15.5px;
+
+  /* movimento */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 160ms;
+  --t: 320ms;
+  --t-slow: 680ms;
+
+  /* layout */
+  --gut: clamp(20px, 5vw, 72px);
+  --maxw: 1320px;
+  --gap-block: 44px;
+  --gap-section: clamp(50px, 9vh, 100px);
+
+  color-scheme: light;
+}

@@ -1,0 +1,247 @@
+/* ==========================================================================
+   08 Terminal: SSH, FTP ativo x passivo, Telnet x SSH
+   ========================================================================== */
+.term {
+  overflow: hidden;
+  border: 1px solid rgba(7, 21, 34, 0.25);
+  border-radius: 6px;
+  background: var(--ink-term);
+  box-shadow: 0 14px 40px rgba(11, 33, 52, 0.16);
+}
+.term .bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(160, 205, 240, 0.16);
+  background: rgba(160, 205, 240, 0.06);
+}
+.term .bar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2a4055;
+}
+.term .bar span {
+  margin-left: 6px;
+  color: #7e9cb8;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.term pre {
+  min-height: clamp(220px, 34vh, 320px);
+  max-height: 460px;
+  margin: 0;
+  padding: clamp(16px, 2.4vw, 26px);
+  overflow-y: auto;
+  color: #b9d2ea;
+  font-family: var(--mono);
+  font-size: clamp(12px, 1.2vw, 14.5px);
+  line-height: 1.9;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.term .p {
+  color: #5fc8ff;
+}
+.term .ok {
+  color: #5be7a9;
+}
+.term .er {
+  color: #ff8a7c;
+}
+.term .cm {
+  color: #7e9cb8;
+}
+.term .caret {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: #5fc8ff;
+  vertical-align: -2px;
+  animation: blink 1s steps(1) infinite;
+}
+.cmdline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(160, 205, 240, 0.16);
+  background: rgba(160, 205, 240, 0.04);
+}
+.cmdline span {
+  color: #5fc8ff;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.cmdline input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #cfe6fa;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.cmdline input::placeholder {
+  color: #5c7c99;
+}
+
+/* ---------- ftp ---------- */
+.ftp {
+  margin-top: 26px;
+}
+.ftpstage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(10px, 3vw, 30px);
+  min-height: 150px;
+  margin: 26px 0 8px;
+}
+.ftpbox {
+  padding: 14px 16px;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  background: var(--void-2);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  text-align: center;
+}
+.ftpwall {
+  position: relative;
+  align-self: stretch;
+  width: 10px;
+  border-radius: 3px;
+  background: repeating-linear-gradient(180deg, var(--hair) 0 8px, transparent 8px 14px);
+}
+.ftpwall::after {
+  content: "firewall";
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+}
+.ftpline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--hair);
+}
+.ftpline--control {
+  top: 38%;
+}
+.ftpline--data {
+  top: 76%;
+}
+.ftplabel {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  right: 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  text-align: center;
+}
+.ftpdot {
+  position: absolute;
+  top: -4.5px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--sig);
+  opacity: 0;
+}
+.ftpdot.run {
+  animation: ftpgo 1500ms var(--ease) forwards;
+}
+.ftpdot.blocked {
+  background: var(--alarm);
+  animation: ftpblock 1100ms var(--ease) forwards;
+}
+@keyframes ftpgo {
+  0% {
+    opacity: 0;
+    left: 2%;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    left: 96%;
+  }
+}
+@keyframes ftpblock {
+  0% {
+    opacity: 0;
+    left: 96%;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    left: 53%;
+  }
+  100% {
+    opacity: 1;
+    left: 51%;
+    transform: scale(1.5);
+  }
+}
+
+/* ---------- telnet x ssh ---------- */
+.wire {
+  margin-top: 52px;
+}
+.wirebox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 22px;
+}
+@media (max-width: 760px) {
+  .wirebox {
+    grid-template-columns: 1fr;
+  }
+}
+.wirebox .w {
+  min-height: 104px;
+  padding: 16px 18px;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  background: var(--pane);
+}
+.wirebox .w h3 {
+  margin: 0 0 10px;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+}
+.wirebox .w .v {
+  min-height: 2.6em;
+  font-family: var(--mono);
+  font-size: clamp(13px, 1.5vw, 16px);
+  word-break: break-all;
+}
+.wirebox .w.bad .v {
+  color: var(--alarm);
+}
+.wirebox .w.good .v {
+  color: var(--safe);
+}

@@ -1,0 +1,89 @@
+/* ==========================================================================
+   01 URL: dissecação do endereço
+   ========================================================================== */
+.urlwrap {
+  margin-top: clamp(30px, 6vh, 60px);
+}
+.urlline {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: clamp(20px, 4.4vw, 54px);
+  font-weight: 500;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.useg {
+  position: relative;
+  margin: 0;
+  padding: 2px 2px 8px;
+  border: 0;
+  background: none;
+  color: var(--faint);
+  font: inherit;
+  cursor: pointer;
+  transition: color var(--t) var(--ease);
+}
+.useg::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t) var(--ease-out);
+}
+.useg:hover,
+.useg[aria-selected="true"] {
+  color: var(--c, var(--sig));
+}
+.useg:hover::after,
+.useg[aria-selected="true"]::after {
+  transform: scaleX(1);
+}
+.useg .stem {
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 1px;
+  height: 0;
+  background: var(--c, var(--sig));
+  transition: height var(--t) var(--ease-out);
+}
+.useg[aria-selected="true"] .stem {
+  height: 26px;
+}
+
+.urlout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(16px, 3vw, 44px);
+  min-height: 96px;
+  margin-top: 38px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+}
+.urlout .tagname {
+  color: var(--c, var(--sig));
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+.urlout p {
+  max-width: 58ch;
+  color: var(--muted);
+}
+.urlout p b {
+  color: var(--text);
+  font-weight: 600;
+}
+@media (max-width: 700px) {
+  .urlout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}

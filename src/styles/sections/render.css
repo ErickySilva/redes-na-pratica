@@ -1,0 +1,125 @@
+/* ==========================================================================
+   06 Render: a página se montando
+   ========================================================================== */
+.browser {
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  border-radius: 6px;
+  background: var(--pane);
+  box-shadow: 0 10px 34px rgba(11, 33, 52, 0.08);
+}
+@media (max-width: 980px) {
+  .browser {
+    margin-top: 26px;
+  }
+}
+.browser .chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--hair);
+  background: var(--void-2);
+}
+.browser .chrome i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c5d8e8;
+}
+.browser .chrome .addr {
+  flex: 1;
+  margin-left: 8px;
+  overflow: hidden;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasarea {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: clamp(260px, 42vh, 380px);
+  padding: 20px;
+}
+.blk {
+  display: block;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(20, 84, 138, 0.13), rgba(20, 84, 138, 0.05));
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 420ms var(--ease-out),
+    transform 420ms var(--ease-out),
+    background 420ms var(--ease);
+}
+.blk.on {
+  opacity: 1;
+  transform: none;
+}
+.blk.done {
+  background: linear-gradient(90deg, rgba(14, 127, 196, 0.3), rgba(14, 127, 196, 0.1));
+}
+.blk.h {
+  width: 72%;
+  height: clamp(30px, 5vh, 44px);
+}
+.blk.t {
+  height: 13px;
+}
+.blk.t.w1 {
+  width: 96%;
+}
+.blk.t.w2 {
+  width: 88%;
+}
+.blk.t.w3 {
+  width: 64%;
+}
+.blk.img {
+  width: 100%;
+  height: clamp(70px, 12vh, 110px);
+  background: linear-gradient(120deg, rgba(91, 69, 204, 0.22), rgba(14, 127, 196, 0.1));
+}
+.blk.row {
+  display: flex;
+  gap: 12px;
+  height: auto;
+  background: none;
+}
+.blk.row span {
+  flex: 1;
+  height: clamp(52px, 8vh, 72px);
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(17, 128, 90, 0.2), rgba(17, 128, 90, 0.06));
+}
+
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(18px, 4vw, 54px);
+  margin: 28px 0 0;
+}
+.counters div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+}
+.counters dd {
+  margin: 0;
+  font-family: var(--disp);
+  font-size: clamp(30px, 5vw, 56px);
+  font-variation-settings: "wdth" 118;
+  font-weight: 800;
+  line-height: 1;
+}
+.counters dt {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+}

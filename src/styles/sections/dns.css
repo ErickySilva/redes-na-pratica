@@ -1,0 +1,118 @@
+/* ==========================================================================
+   02 DNS: cadeia de resolução
+   ========================================================================== */
+.chain {
+  position: relative;
+}
+.chain-list {
+  display: grid;
+  gap: clamp(10px, 1.8vh, 20px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.chain .track {
+  position: absolute;
+  top: 26px;
+  bottom: 26px;
+  left: 23px;
+  width: 1px;
+  background: var(--hair);
+}
+.chain .beam {
+  position: absolute;
+  top: 26px;
+  left: 22px;
+  width: 3px;
+  height: 0;
+  border-radius: 2px;
+  background: linear-gradient(var(--sig), transparent);
+  box-shadow: 0 0 16px var(--sig-glow);
+}
+@media (max-width: 980px) {
+  .chain-list {
+    gap: 14px;
+  }
+}
+
+.knode {
+  position: relative;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  align-items: center;
+  gap: 16px;
+  opacity: 0.3;
+  transition: opacity var(--t) var(--ease);
+}
+.knode.on {
+  opacity: 1;
+}
+.knode .dot {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--hair);
+  border-radius: 50%;
+  background: var(--pane);
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 12px;
+  transition:
+    border-color var(--t) var(--ease),
+    color var(--t) var(--ease),
+    box-shadow var(--t) var(--ease);
+}
+.knode.on .dot {
+  border-color: var(--sig);
+  color: var(--sig);
+  box-shadow: 0 0 0 6px rgba(14, 127, 196, 0.08);
+}
+.knode.hit .dot {
+  border-color: var(--sig);
+  background: var(--sig);
+  color: #fff;
+}
+.knode .nm {
+  font-family: var(--disp);
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-variation-settings: "wdth" 108;
+  font-weight: 700;
+}
+.knode .sub {
+  max-width: 44ch;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.knode.skip {
+  opacity: 0.18;
+}
+.knode.skip .nm {
+  text-decoration: line-through;
+  text-decoration-color: var(--faint);
+}
+
+.ipout {
+  min-height: 1.2em;
+  margin-top: 26px;
+  color: var(--safe);
+  font-family: var(--mono);
+  font-size: clamp(22px, 3.6vw, 44px);
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--t-slow) var(--ease-out),
+    transform var(--t-slow) var(--ease-out);
+}
+.ipout.on {
+  opacity: 1;
+  transform: none;
+}
+.ipmeta {
+  min-height: 1.2em;
+  margin-top: 8px;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
