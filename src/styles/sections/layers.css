@@ -1,0 +1,107 @@
+/* ==========================================================================
+   07 Camadas: acordeão do modelo TCP/IP e portas conhecidas
+   ========================================================================== */
+.layers {
+  display: grid;
+  gap: 2px;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+}
+.layerbtn {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px clamp(14px, 2vw, 22px);
+  border: 0;
+  border-bottom: 1px solid var(--hair-soft);
+  background: var(--pane);
+  color: var(--text);
+  font-family: var(--disp);
+  font-size: clamp(15px, 1.5vw, 19px);
+  font-variation-settings: "wdth" 108;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--t) var(--ease),
+    color var(--t) var(--ease);
+}
+.layerbtn:hover {
+  background: var(--void-2);
+}
+.layerbtn[aria-expanded="true"] {
+  color: var(--sig);
+  background: rgba(14, 127, 196, 0.07);
+}
+.layerbtn .sm {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+}
+.layerbody {
+  padding: 0 clamp(14px, 2vw, 22px) 20px;
+  border-bottom: 1px solid var(--hair-soft);
+  background: var(--pane);
+  color: var(--muted);
+  font-size: var(--fs-note);
+}
+.layerbody[hidden] {
+  display: none;
+}
+.layerbody em {
+  border-bottom: 1px solid var(--sig-dim);
+  color: var(--text);
+  font-style: normal;
+}
+
+.port-caption {
+  margin: 56px 0 0;
+}
+.portstrip {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+}
+.portstrip button {
+  flex: 1 1 118px;
+  padding: 16px 10px;
+  border: 0;
+  border-right: 1px solid var(--hair-soft);
+  background: var(--pane);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease);
+}
+.portstrip button:last-child {
+  border-right: 0;
+}
+.portstrip button:hover {
+  color: var(--text);
+  background: var(--void-2);
+}
+.portstrip button[aria-selected="true"] {
+  color: #fff;
+  background: var(--sig);
+}
+.portout {
+  min-height: 3em;
+  max-width: 62ch;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: var(--fs-note);
+}
+.portout b {
+  color: var(--text);
+  font-weight: 600;
+}

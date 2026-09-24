@@ -1,0 +1,25 @@
+{
+  "name": "entre-o-enter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page interativa sobre a camada de aplicação: DNS, TCP, TLS, HTTP, FTP, SSH, SMTP, POP3 e IMAP, do Enter até a página aparecer.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.9",
+    "vite": "^8.3.0"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

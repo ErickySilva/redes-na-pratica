@@ -1,0 +1,165 @@
+/* ==========================================================================
+   10 Fim: checklist, quiz e tabela de referência
+   ========================================================================== */
+.finale {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  min-height: 100svh;
+  padding-block: clamp(70px, 12vh, 140px);
+}
+
+.checks {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--hair);
+  list-style: none;
+}
+.chk {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(12px, 2.5vw, 28px);
+  padding: clamp(13px, 2vh, 20px) 0;
+  border-bottom: 1px solid var(--hair-soft);
+  opacity: 0.28;
+  transition:
+    opacity 500ms var(--ease),
+    color 500ms var(--ease);
+}
+.chk.on {
+  opacity: 1;
+}
+.chk .nm {
+  font-family: var(--disp);
+  font-size: clamp(20px, 3.4vw, 40px);
+  font-variation-settings: "wdth" 114;
+  font-weight: 800;
+}
+.chk .ds {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  text-align: right;
+}
+.chk .tickmark {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--hair);
+  border-radius: 50%;
+  color: var(--faint);
+  font-size: 13px;
+  transition:
+    border-color 400ms var(--ease),
+    color 400ms var(--ease),
+    background 400ms var(--ease);
+}
+.chk.on .tickmark {
+  border-color: var(--safe);
+  background: rgba(17, 128, 90, 0.08);
+  color: var(--safe);
+}
+
+.closing {
+  max-width: 24ch;
+  margin-top: clamp(40px, 8vh, 90px);
+}
+.closing h2 {
+  font-size: clamp(30px, 5.4vw, 70px);
+}
+.closing p {
+  max-width: 56ch;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: clamp(16px, 1.3vw, 19px);
+}
+
+/* ---------- quiz ---------- */
+.score {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 8px;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.score b {
+  color: var(--sig);
+  font-family: var(--disp);
+  font-size: clamp(26px, 4vw, 44px);
+  font-variation-settings: "wdth" 116;
+  font-weight: 800;
+}
+.qz {
+  display: grid;
+  gap: 14px;
+  margin-top: 30px;
+}
+.qcard {
+  padding: clamp(16px, 2.4vw, 24px);
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  background: var(--pane);
+}
+.qcard h3 {
+  margin: 0 0 14px;
+  font-family: var(--disp);
+  font-size: clamp(17px, 1.9vw, 21px);
+  font-variation-settings: "wdth" 108;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.opt {
+  padding: 10px 15px;
+  border: 1px solid var(--hair);
+  border-radius: 3px;
+  background: var(--void-2);
+  color: var(--text);
+  font-family: var(--ui);
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    border-color var(--t-fast) var(--ease),
+    background var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+.opt:hover {
+  border-color: var(--sig);
+  transform: translateY(-1px);
+}
+.opt.right {
+  border-color: var(--safe);
+  background: rgba(17, 128, 90, 0.1);
+  color: var(--safe);
+}
+.opt.wrong {
+  border-color: var(--alarm);
+  background: rgba(195, 58, 45, 0.08);
+  color: var(--alarm);
+}
+.opt[disabled] {
+  cursor: default;
+  transform: none;
+}
+.qfb {
+  display: none;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.qfb.on {
+  display: block;
+}
+.quiz-actions {
+  margin-top: 18px;
+}

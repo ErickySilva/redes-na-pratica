@@ -1,0 +1,139 @@
+/* ==========================================================================
+   04 TLS: túnel, certificado e alerta
+   ========================================================================== */
+.tunnel {
+  overflow: hidden;
+}
+.tunnel .shellwrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 118px;
+  margin: 10px 0 18px;
+}
+.tunnel .pipe {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 60px;
+  border: 1px solid var(--hair);
+  border-radius: 40px;
+  background: transparent;
+  transform: translateY(-50%);
+  transition:
+    border-color var(--t-slow) var(--ease),
+    background var(--t-slow) var(--ease),
+    box-shadow var(--t-slow) var(--ease);
+}
+.tunnel.secure .pipe {
+  border-color: rgba(17, 128, 90, 0.45);
+  background: rgba(17, 128, 90, 0.06);
+  box-shadow: 0 0 34px rgba(17, 128, 90, 0.08) inset;
+}
+.tunnel.broken .pipe {
+  border-color: rgba(195, 58, 45, 0.5);
+  background: rgba(195, 58, 45, 0.05);
+}
+.tunnel .payload {
+  position: relative;
+  color: var(--alarm);
+  font-family: var(--mono);
+  font-size: clamp(13px, 1.8vw, 20px);
+  letter-spacing: 0.02em;
+  transition: color var(--t) var(--ease);
+}
+.tunnel.secure .payload {
+  color: var(--safe);
+}
+.tunnel .eye {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--hair);
+}
+.tunnel .eye .who {
+  padding-top: 2px;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+.tunnel .eye .says {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.switchrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.cert {
+  display: grid;
+  gap: 6px;
+  padding: 18px 20px;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  background: rgba(17, 128, 90, 0.05);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity var(--t-slow) var(--ease-out),
+    transform var(--t-slow) var(--ease-out);
+}
+.cert.on {
+  opacity: 1;
+  transform: none;
+}
+.cert .hd {
+  margin-bottom: 6px;
+  color: var(--safe);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+}
+.cert .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+.cert .row dd {
+  margin: 0;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.warnbox {
+  display: none;
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--alarm);
+  border-radius: 4px;
+  background: rgba(195, 58, 45, 0.06);
+}
+.warnbox.on {
+  display: block;
+}
+.warnbox h3 {
+  margin: 0 0 6px;
+  color: var(--alarm);
+  font-family: var(--disp);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.warnbox p {
+  color: var(--muted);
+  font-size: 14.5px;
+}

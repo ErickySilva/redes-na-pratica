@@ -1,0 +1,11 @@
+{
+  "name": "Entre o Enter e a página",
+  "short_name": "Enter",
+  "description": "Uma travessia interativa pela camada de aplicação.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#EAF3FB",
+  "theme_color": "#0E7FC4",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
