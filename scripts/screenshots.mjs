@@ -77,6 +77,7 @@ for (const theme of ["light", "dark"]) {
   await at(page, ".pg");
   await page.locator('#methods [data-m="POST"]').click();
   await page.locator('#statuses [data-s="404"]').click();
+  await page.waitForTimeout(600); // espera as transições de cor terminarem
   await shot(page, "http");
 
   await at(page, "#raio-x", { wait: 1500 });

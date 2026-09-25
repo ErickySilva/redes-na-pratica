@@ -1,4 +1,9 @@
 /* Ponto de entrada dos estilos. A ordem importa: tokens → base → layout → componentes → seções. */
+/* Fontes auto-hospedadas (Fontsource): nenhuma requisição a terceiros, nenhum bloqueio de renderização. */
+@import "@fontsource-variable/anybody/wdth.css";
+@import "@fontsource-variable/inter-tight/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+
 @import "./tokens.css";
 @import "./base.css";
 @import "./layout.css";

@@ -15,6 +15,13 @@
   position: relative;
   padding-block: clamp(90px, 13vh, 170px);
 }
+/* Etapas fora da tela não passam por estilo/layout/pintura até se aproximarem.
+   "auto" faz o navegador lembrar a altura real depois da primeira renderização. */
+.stage,
+.finale {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1200px;
+}
 .stage--flush-top {
   padding-top: 0;
 }
