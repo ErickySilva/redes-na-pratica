@@ -38,9 +38,9 @@
   --key-shine: #ffffff;
 
   /* tipografia */
-  --disp: "Anybody", "Arial Narrow", system-ui, sans-serif;
-  --ui: "Inter Tight", system-ui, -apple-system, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --disp: "Anybody Variable", "Arial Narrow", system-ui, sans-serif;
+  --ui: "Inter Tight Variable", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
   --fs-note: 15.5px;
 
   /* movimento */

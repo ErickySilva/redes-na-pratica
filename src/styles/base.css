@@ -159,3 +159,13 @@ code,
 .is-faint {
   color: var(--faint);
 }
+
+/* Em conteúdo técnico, "<!--" e "->>" precisam aparecer como os caracteres reais, sem ligaduras. */
+pre,
+code,
+kbd,
+input,
+.tbl,
+.mono {
+  font-variant-ligatures: none;
+}
