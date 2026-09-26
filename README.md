@@ -5,7 +5,7 @@
 **O que acontece nos 300 milissegundos entre apertar Enter e a página aparecer?**
 Uma travessia interativa pela camada de aplicação, com consultas DNS reais e o raio-x da própria página.
 
-[**Ver ao vivo →**](https://erickysilva.github.io/entre-o-enter/)
+[**Ver ao vivo →**](https://erickysilva.github.io/redes-na-pratica/)
 
 ![Lighthouse Desktop](https://img.shields.io/badge/Lighthouse_desktop-100%20%C2%B7%20100%20%C2%B7%20100%20%C2%B7%20100-0e7552)
 ![Lighthouse Mobile](https://img.shields.io/badge/Lighthouse_mobile-97%20%C2%B7%20100%20%C2%B7%20100%20%C2%B7%20100-0e7552)

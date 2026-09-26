@@ -43,7 +43,7 @@ import { initFinale } from "./js/sections/finale.js";
   try {
     init();
   } catch (err) {
-    console.error(`[entre-o-enter] falha em ${init.name}:`, err);
+    console.error(`[redes-na-pratica] falha em ${init.name}:`, err);
   }
 });
 
